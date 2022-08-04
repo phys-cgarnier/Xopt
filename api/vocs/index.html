@@ -825,6 +825,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.validate_input_data" class="md-nav__link">
+    validate_input_data()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#xopt.vocs.VOCS.variable_data" class="md-nav__link">
     variable_data()
   </a>
@@ -1115,6 +1122,13 @@
           <li class="md-nav__item">
   <a href="#xopt.vocs.VOCS.random_inputs" class="md-nav__link">
     random_inputs()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.validate_input_data" class="md-nav__link">
+    validate_input_data()
   </a>
   
 </li>
@@ -1425,7 +1439,23 @@ to describe optimization problems.</p>
 <span class="normal">276</span>
 <span class="normal">277</span>
 <span class="normal">278</span>
-<span class="normal">279</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VOCS</span><span class="p">(</span><span class="n">XoptBaseModel</span><span class="p">):</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VOCS</span><span class="p">(</span><span class="n">XoptBaseModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Variables, Objectives, Constraints, and other Settings (VOCS) data structure</span>
 <span class="sd">    to describe optimization problems.</span>
@@ -1668,6 +1698,22 @@ to describe optimization problems.</p>
 <span class="sd">            result: processed Dataframe</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">form_feasibility_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">validate_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_points</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validates input data. Raises an error if the input data does not satisfy</span>
+<span class="sd">        requirements given by vocs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            input_points: input data to be validated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: if input data does not satisfy requirements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">validate_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_points</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -2486,6 +2532,64 @@ then constraints)</p>
 
     <span class="c1"># return pd.DataFrame(inputs, index=range(n))</span>
     <span class="k">return</span> <span class="n">inputs</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="xopt.vocs.VOCS.validate_input_data" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">validate_input_data</span><span class="p">(</span><span class="n">input_points</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Validates input data. Raises an error if the input data does not satisfy
+requirements given by vocs.</p>
+<p>Args:
+    input_points: input data to be validated.</p>
+<p>Returns:
+    None</p>
+<p>Raises:
+    ValueError: if input data does not satisfy requirements.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>xopt/vocs.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validate_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_points</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validates input data. Raises an error if the input data does not satisfy</span>
+<span class="sd">    requirements given by vocs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        input_points: input data to be validated.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: if input data does not satisfy requirements.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">validate_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_points</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
