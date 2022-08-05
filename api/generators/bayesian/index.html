@@ -1169,7 +1169,8 @@
 <span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
-<span class="normal">166</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="n">BayesianOptions</span><span class="p">()):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be of type BayesianOptions&quot;</span><span class="p">)</span>
@@ -1276,6 +1277,7 @@
             <span class="n">acq</span> <span class="o">=</span> <span class="n">ProximalAcquisitionFunction</span><span class="p">(</span>
                 <span class="n">acq</span><span class="p">,</span>
                 <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">),</span>
+                <span class="n">transformed_weighting</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">use_transformed_proximal_weights</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">acq</span>
@@ -1364,7 +1366,8 @@
 <span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="normal">130</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a function that can be used to evaluate the acquisition function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1380,6 +1383,7 @@
         <span class="n">acq</span> <span class="o">=</span> <span class="n">ProximalAcquisitionFunction</span><span class="p">(</span>
             <span class="n">acq</span><span class="p">,</span>
             <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">),</span>
+            <span class="n">transformed_weighting</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">use_transformed_proximal_weights</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">acq</span>
