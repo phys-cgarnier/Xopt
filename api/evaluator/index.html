@@ -1097,9 +1097,7 @@
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Evaluator</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Evaluator</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Xopt Evaluator for handling the parallel execution of an evaluate function.</span>
 
@@ -1181,10 +1179,8 @@
         <span class="sd">&quot;&quot;&quot;submit dataframe of inputs to executor&quot;&quot;&quot;</span>
         <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>  <span class="c1"># cast to dataframe for consistency</span>
         <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="c1"># Do not use iterrows, it doesn&#39;t preserve dtype</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">input_data</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
-            <span class="n">inputs</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Index&quot;</span><span class="p">)</span>
+        <span class="c1"># Do not use iterrows or itertuples.</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">inputs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">input_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">input_data</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">)):</span>
             <span class="n">futures</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">futures</span>
 </code></pre></div></td></tr></table></div>
@@ -1373,16 +1369,12 @@ Evaluator.function_kwargs.</p>
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">submit_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">submit_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;submit dataframe of inputs to executor&quot;&quot;&quot;</span>
     <span class="n">input_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>  <span class="c1"># cast to dataframe for consistency</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c1"># Do not use iterrows, it doesn&#39;t preserve dtype</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">input_data</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
-        <span class="n">inputs</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Index&quot;</span><span class="p">)</span>
+    <span class="c1"># Do not use iterrows or itertuples.</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">inputs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">input_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">input_data</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">)):</span>
         <span class="n">futures</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">futures</span>
 </code></pre></div></td></tr></table></div>
