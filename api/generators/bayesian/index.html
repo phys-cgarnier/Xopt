@@ -1214,8 +1214,10 @@
 <span class="normal">208</span>
 <span class="normal">209</span>
 <span class="normal">210</span>
-<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="n">BayesianOptions</span><span class="p">()):</span>
+<span class="normal">211</span>
+<span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be of type BayesianOptions&quot;</span><span class="p">)</span>
 
@@ -1436,8 +1438,7 @@
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
-<span class="normal">120</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
@@ -1455,7 +1456,8 @@
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
-<span class="normal">138</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="normal">138</span>
+<span class="normal">139</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a function that can be used to evaluate the acquisition function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1498,8 +1500,7 @@ constraints</p>
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 87</span>
-<span class="normal"> 88</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
 <span class="normal"> 89</span>
 <span class="normal"> 90</span>
 <span class="normal"> 91</span>
@@ -1528,7 +1529,8 @@ constraints</p>
 <span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">update_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">update_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a ModelListGP containing independent models for the objectives and</span>
 <span class="sd">    constraints</span>
@@ -1632,10 +1634,11 @@ constraints</p>
 <span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span>
-<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianExplorationGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianExplorationGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;bayesian_exploration&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="n">BayesianOptions</span><span class="p">()):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generator using UpperConfidenceBound acquisition function</span>
 
@@ -1647,6 +1650,7 @@ constraints</p>
 <span class="sd">        options: BayesianOptions</span>
 <span class="sd">            Options for the generator</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a BayesianOptions object&quot;</span><span class="p">)</span>
 
@@ -1693,7 +1697,7 @@ constraints</p>
 
 
 <h3 id="xopt.generators.bayesian.bayesian_exploration.BayesianExplorationGenerator.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">BayesianOptions</span><span class="p">())</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1747,7 +1751,8 @@ constraints</p>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="n">BayesianOptions</span><span class="p">()):</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generator using UpperConfidenceBound acquisition function</span>
 
@@ -1759,6 +1764,7 @@ constraints</p>
 <span class="sd">    options: BayesianOptions</span>
 <span class="sd">        Options for the generator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a BayesianOptions object&quot;</span><span class="p">)</span>
 
@@ -1838,10 +1844,12 @@ constraints</p>
 <span class="normal">68</span>
 <span class="normal">69</span>
 <span class="normal">70</span>
-<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;mobo&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">MOBOOptions</span> <span class="o">=</span> <span class="n">MOBOOptions</span><span class="p">()):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">MOBOOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">MOBOOptions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">MOBOOptions</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a MOBOOptions object&quot;</span><span class="p">)</span>
 
@@ -1963,10 +1971,11 @@ constraints</p>
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;upper_confidence_bound&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="n">UCBOptions</span><span class="p">()):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generator using UpperConfidenceBound acquisition function</span>
 
@@ -1978,6 +1987,7 @@ constraints</p>
 <span class="sd">        options: UpperConfidenceBoundOptions</span>
 <span class="sd">            Specific options for this generator</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">UCBOptions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">UCBOptions</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a UCBOptions object&quot;</span><span class="p">)</span>
 
@@ -2026,7 +2036,7 @@ constraints</p>
 
 
 <h3 id="xopt.generators.bayesian.upper_confidence_bound.UpperConfidenceBoundGenerator.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">UCBOptions</span><span class="p">())</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2081,7 +2091,8 @@ constraints</p>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="n">UCBOptions</span><span class="p">()):</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generator using UpperConfidenceBound acquisition function</span>
 
@@ -2093,6 +2104,7 @@ constraints</p>
 <span class="sd">    options: UpperConfidenceBoundOptions</span>
 <span class="sd">        Specific options for this generator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">UCBOptions</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">UCBOptions</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a UCBOptions object&quot;</span><span class="p">)</span>
 

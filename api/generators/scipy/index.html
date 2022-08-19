@@ -962,7 +962,10 @@
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
-<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">NelderMeadGenerator</span><span class="p">(</span><span class="n">ScipyOptimizeGenerator</span><span class="p">):</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">NelderMeadGenerator</span><span class="p">(</span><span class="n">ScipyOptimizeGenerator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Nelder-Mead algorithm from SciPy in Xopt&#39;s Generator form.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -973,7 +976,10 @@
     <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">NelderMeadOptions</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">NelderMeadOptions</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">NelderMeadOptions</span> <span class="o">=</span> <span class="n">NelderMeadOptions</span><span class="p">()):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">NelderMeadOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">NelderMeadOptions</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">NelderMeadOptions</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;options must be of type NedlerMeadOptions&quot;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_init_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1042,13 +1048,13 @@
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/scipy/neldermead.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
-<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">simplex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the simplex in the current state.</span>

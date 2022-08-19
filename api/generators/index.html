@@ -1098,7 +1098,7 @@
     <span class="n">alias</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">_GeneratorOptions</span><span class="p">]</span> <span class="o">=</span> <span class="n">GeneratorOptions</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">GeneratorOptions</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the generator.</span>
@@ -1108,7 +1108,7 @@
 <span class="sd">            options: The options to use.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing generator </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">alias</span><span class="si">}</span><span class="s2">,&quot;</span><span class="p">)</span>
-
+        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">GeneratorOptions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">GeneratorOptions</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;options must be of type GeneratorOptions&quot;</span><span class="p">)</span>
 
@@ -1188,7 +1188,7 @@
 
 
 <h4 id="xopt.generator.Generator.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">GeneratorOptions</span><span class="p">())</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
@@ -1222,7 +1222,7 @@
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">_GeneratorOptions</span><span class="p">]</span> <span class="o">=</span> <span class="n">GeneratorOptions</span><span class="p">()</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">GeneratorOptions</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initialize the generator.</span>
@@ -1232,7 +1232,7 @@
 <span class="sd">        options: The options to use.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing generator </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">alias</span><span class="si">}</span><span class="s2">,&quot;</span><span class="p">)</span>
-
+    <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">GeneratorOptions</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">GeneratorOptions</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;options must be of type GeneratorOptions&quot;</span><span class="p">)</span>
 
@@ -1293,8 +1293,8 @@
 <code class="highlight language-python"><span class="n">default_options</span><span class="p">()</span></code>
   
   <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
   </span>
 
 </h4>
