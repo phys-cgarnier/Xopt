@@ -1829,7 +1829,9 @@ constraints</p>
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;mobo&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">MOBOOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -1859,6 +1861,8 @@ constraints</p>
 
         <span class="c1"># get list of constraining functions</span>
         <span class="n">constraint_callables</span> <span class="o">=</span> <span class="n">create_constraint_callables</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">constraint_callables</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">constraint_callables</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">acq</span> <span class="o">=</span> <span class="n">qNoisyExpectedHypervolumeImprovement</span><span class="p">(</span>
             <span class="n">model</span><span class="p">,</span>
