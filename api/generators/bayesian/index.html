@@ -491,8 +491,64 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../examples/expected_improvement_rosenbrock.ipynb" class="md-nav__link">
+        Expected improvement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/custom_model.ipynb" class="md-nav__link">
+        Custom GP models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../examples/bayes_opt/mobo/" class="md-nav__link">
         Multi-objective Bayesian Optimization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/mggpo.ipynb" class="md-nav__link">
+        Multi-generation gaussian process optimization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/time_dependent_bo.ipynb" class="md-nav__link">
+        Time dependent upper confidence bound
       </a>
     </li>
   
@@ -1788,7 +1844,10 @@ constraints</p>
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/bayesian/mobo.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
@@ -1831,7 +1890,18 @@ constraints</p>
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
-<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;mobo&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">MOBOOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -1845,19 +1915,33 @@ constraints</p>
     <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">MOBOOptions</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">MOBOOptions</span><span class="p">()</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reference_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">reference_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">XoptError</span><span class="p">(</span>
+                <span class="s2">&quot;referenece point must be specified for multi-objective &quot;</span> <span class="s2">&quot;algorithm&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">pt</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objective_names</span><span class="p">:</span>
+            <span class="n">ref_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">reference_point</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MINIMIZE&quot;</span><span class="p">:</span>
+                <span class="n">pt</span> <span class="o">+=</span> <span class="p">[</span><span class="o">-</span><span class="n">ref_val</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MAXIMIZE&quot;</span><span class="p">:</span>
+                <span class="n">pt</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ref_val</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;objective type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="si">}</span><span class="s2"> not</span><span class="se">\</span>
+<span class="s2">                        supported&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">create_mobo_objective</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="c1"># get reference point from data</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">outcomes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_outcome_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">use_data_as_reference</span><span class="p">:</span>
-            <span class="n">weighted_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">ref_point</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span>
-                <span class="n">weighted_points</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
         <span class="c1"># get list of constraining functions</span>
         <span class="n">constraint_callables</span> <span class="o">=</span> <span class="n">create_constraint_callables</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">)</span>
@@ -1869,7 +1953,7 @@ constraints</p>
             <span class="n">X_baseline</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">prune_baseline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">constraints</span><span class="o">=</span><span class="n">constraint_callables</span><span class="p">,</span>
-            <span class="n">ref_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">ref_point</span><span class="p">,</span>
+            <span class="n">ref_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_point</span><span class="p">,</span>
             <span class="n">sampler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="p">,</span>
             <span class="n">objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">,</span>
         <span class="p">)</span>
