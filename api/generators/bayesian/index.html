@@ -1473,7 +1473,8 @@
 <span class="normal">206</span>
 <span class="normal">207</span>
 <span class="normal">208</span>
-<span class="normal">209</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="normal">209</span>
+<span class="normal">210</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
@@ -1582,6 +1583,7 @@
                 <span class="n">acq</span><span class="p">,</span>
                 <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">),</span>
                 <span class="n">transformed_weighting</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">use_transformed_proximal_weights</span><span class="p">,</span>
+                <span class="n">beta</span><span class="o">=</span><span class="mf">10.0</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">acq</span>
@@ -1712,7 +1714,8 @@
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
-<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="normal">132</span>
+<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a function that can be used to evaluate the acquisition function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1729,6 +1732,7 @@
             <span class="n">acq</span><span class="p">,</span>
             <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">),</span>
             <span class="n">transformed_weighting</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">use_transformed_proximal_weights</span><span class="p">,</span>
+            <span class="n">beta</span><span class="o">=</span><span class="mf">10.0</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">acq</span>
@@ -1911,7 +1915,7 @@ constraints</p>
         <span class="p">)</span>
 
         <span class="n">cqPV</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
-            <span class="n">model</span><span class="p">,</span> <span class="n">qPV</span><span class="p">,</span> <span class="n">create_constraint_callables</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">),</span> <span class="n">infeasible_cost</span><span class="o">=</span><span class="mf">0.0</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">qPV</span><span class="p">,</span> <span class="n">create_constraint_callables</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">),</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">cqPV</span>
@@ -2202,8 +2206,7 @@ constraints</p>
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/bayesian/upper_confidence_bound.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
-<span class="normal">38</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
@@ -2245,7 +2248,10 @@ constraints</p>
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
-<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;upper_confidence_bound&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -2285,7 +2291,9 @@ constraints</p>
         <span class="p">)</span>
 
         <span class="n">cqUCB</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
-            <span class="n">model</span><span class="p">,</span> <span class="n">qUCB</span><span class="p">,</span> <span class="n">create_constraint_callables</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">),</span> <span class="n">infeasible_cost</span><span class="o">=</span><span class="mf">0.0</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="n">qUCB</span><span class="p">,</span>
+            <span class="n">create_constraint_callables</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">),</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">cqUCB</span>
@@ -2346,8 +2354,7 @@ constraints</p>
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/upper_confidence_bound.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
-<span class="normal">41</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
@@ -2365,7 +2372,8 @@ constraints</p>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generator using UpperConfidenceBound acquisition function</span>
 
