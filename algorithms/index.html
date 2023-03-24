@@ -875,6 +875,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
@@ -897,6 +899,20 @@
     <li class="md-nav__item">
       <a href="../examples/es/extremum_seeking/" class="md-nav__link">
         Extremum seeking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/rcds/rcds/" class="md-nav__link">
+        RCDS
       </a>
     </li>
   
@@ -1195,10 +1211,15 @@ specified in <code>VOCS</code></p>
 <h1 id="scipy-generators">Scipy Generators</h1>
 <p>These generators serve as wrappers for algorithms implemented in scipy.
 - <code>NelderMeadGenerator</code>: implements Nelder-Mead (simplex) optimization.</p>
+<h1 id="rcds-generators">RCDS Generators</h1>
+<ul>
+<li><code>RCDSGenerator</code>: implements the RCDS algorithm. RCDS could be applied in noisy
+  online optimization scenarios</li>
+</ul>
 <h1 id="custom-generators">Custom Generators</h1>
-<p>Any general algorithm can be implemented by subclassing the abstract <code>Generator</code> 
-class and used in the Xopt framework. If you implement a generator for your use case 
-please consider opening a pull request so that we can add it to Xopt! </p>
+<p>Any general algorithm can be implemented by subclassing the abstract <code>Generator</code>
+class and used in the Xopt framework. If you implement a generator for your use case
+please consider opening a pull request so that we can add it to Xopt!</p>
 
 
 
