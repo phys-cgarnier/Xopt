@@ -1828,7 +1828,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span>
         <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">supports_batch_generation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">supports_batch_generation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
@@ -2586,7 +2586,7 @@ constraints</p>
 
         <span class="k">if</span> <span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;vocs must have one objective for exploration&quot;</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">supports_batch_generation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BayesianOptions</span><span class="p">:</span>
@@ -2651,7 +2651,11 @@ constraints</p>
           <td>
                 <code><a class="autorefs autorefs-internal" title="xopt.vocs.VOCS" href="../../vocs/#xopt.vocs.VOCS">VOCS</a></code>
           </td>
-          <td><p>Standard vocs for xopt</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Standard vocs for xopt</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2699,7 +2703,7 @@ constraints</p>
 
     <span class="k">if</span> <span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;vocs must have one objective for exploration&quot;</span><span class="p">)</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">supports_batch_generation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -3145,7 +3149,11 @@ constraints</p>
           <td>
                 <code><a class="autorefs autorefs-internal" title="xopt.vocs.VOCS" href="../../vocs/#xopt.vocs.VOCS">VOCS</a></code>
           </td>
-          <td><p>Standard vocs dictionary for xopt</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Standard vocs dictionary for xopt</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
