@@ -15,7 +15,7 @@
         <link rel="next" href="../genetic/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -676,8 +676,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../examples/single_objective_bayes_opt/expected_improvement_rosenbrock/" class="md-nav__link">
-        Expected Improvement BO
+      <a href="../../../examples/single_objective_bayes_opt/expected_improvement_rosenbrock.ipynb" class="md-nav__link">
+        Expected improvement
       </a>
     </li>
   
@@ -747,7 +747,7 @@
   
     <li class="md-nav__item">
       <a href="../../../examples/single_objective_bayes_opt/bax_tutorial/" class="md-nav__link">
-        Imports and random seeding for reproducibility
+        Basic Optimization using BAX
       </a>
     </li>
   
@@ -1231,15 +1231,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.get_trust_region" class="md-nav__link">
-    get_trust_region()
+  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.train_model" class="md-nav__link">
+    train_model()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.train_model" class="md-nav__link">
-    train_model()
+  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.validate_turbo_controller" class="md-nav__link">
+    validate_turbo_controller()
   </a>
   
 </li>
@@ -1254,19 +1254,6 @@
     BayesianExplorationGenerator
   </a>
   
-    <nav class="md-nav" aria-label="BayesianExplorationGenerator">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.bayesian_exploration.BayesianExplorationGenerator.__init__" class="md-nav__link">
-    __init__()
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1278,8 +1265,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.mobo.MOBOGenerator.calculate_hypervolume" class="md-nav__link">
-    calculate_hypervolume()
+  <a href="#xopt.generators.bayesian.mobo.MOBOGenerator.get_acquisition" class="md-nav__link">
+    get_acquisition()
   </a>
   
 </li>
@@ -1293,19 +1280,6 @@
   <a href="#xopt.generators.bayesian.upper_confidence_bound.UpperConfidenceBoundGenerator" class="md-nav__link">
     UpperConfidenceBoundGenerator
   </a>
-  
-    <nav class="md-nav" aria-label="UpperConfidenceBoundGenerator">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.upper_confidence_bound.UpperConfidenceBoundGenerator.__init__" class="md-nav__link">
-    __init__()
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1413,15 +1387,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.get_trust_region" class="md-nav__link">
-    get_trust_region()
+  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.train_model" class="md-nav__link">
+    train_model()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.train_model" class="md-nav__link">
-    train_model()
+  <a href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator.validate_turbo_controller" class="md-nav__link">
+    validate_turbo_controller()
   </a>
   
 </li>
@@ -1436,19 +1410,6 @@
     BayesianExplorationGenerator
   </a>
   
-    <nav class="md-nav" aria-label="BayesianExplorationGenerator">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.bayesian_exploration.BayesianExplorationGenerator.__init__" class="md-nav__link">
-    __init__()
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1460,8 +1421,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.mobo.MOBOGenerator.calculate_hypervolume" class="md-nav__link">
-    calculate_hypervolume()
+  <a href="#xopt.generators.bayesian.mobo.MOBOGenerator.get_acquisition" class="md-nav__link">
+    get_acquisition()
   </a>
   
 </li>
@@ -1475,19 +1436,6 @@
   <a href="#xopt.generators.bayesian.upper_confidence_bound.UpperConfidenceBoundGenerator" class="md-nav__link">
     UpperConfidenceBoundGenerator
   </a>
-  
-    <nav class="md-nav" aria-label="UpperConfidenceBoundGenerator">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#xopt.generators.bayesian.upper_confidence_bound.UpperConfidenceBoundGenerator.__init__" class="md-nav__link">
-    __init__()
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1533,11 +1481,7 @@
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 33</span>
-<span class="normal"> 34</span>
-<span class="normal"> 35</span>
-<span class="normal"> 36</span>
-<span class="normal"> 37</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 37</span>
 <span class="normal"> 38</span>
 <span class="normal"> 39</span>
 <span class="normal"> 40</span>
@@ -1823,54 +1767,120 @@
 <span class="normal">320</span>
 <span class="normal">321</span>
 <span class="normal">322</span>
-<span class="normal">323</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span>
-        <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">supports_batch_generation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be of type BayesianOptions&quot;</span><span class="p">)</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;base_bayesian_generator&quot;</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;botorch model used by the generator to perform optimization&quot;</span>
+    <span class="p">)</span>
+    <span class="n">n_monte_carlo_samples</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">128</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of monte carlo samples to use&quot;</span>
+    <span class="p">)</span>
+    <span class="n">turbo_controller</span><span class="p">:</span> <span class="n">TurboController</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;turbo controller for trust-region BO&quot;</span>
+    <span class="p">)</span>
+    <span class="n">use_cuda</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;flag to enable cuda usage if available&quot;</span><span class="p">)</span>
+    <span class="n">model_constructor</span><span class="p">:</span> <span class="n">ModelConstructor</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">StandardModelConstructor</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;constructor used to generate model&quot;</span>
+    <span class="p">)</span>
+    <span class="n">numerical_optimizer</span><span class="p">:</span> <span class="n">NumericalOptimizer</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">LBFGSOptimizer</span><span class="p">(),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;optimizer used to optimize the acquisition &quot;</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">max_travel_distances</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;limits for travel distance between points in normalized space&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;model_constructor&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">validate_model_constructor</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">constructor_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;standard&quot;</span><span class="p">:</span> <span class="n">StandardModelConstructor</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">StandardModelConstructor</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ModelConstructor</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">constructor_dict</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">constructor_dict</span><span class="p">[</span><span class="n">value</span><span class="p">]()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">constructor_dict</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">constructor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_acquisition</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_trust_region</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">supports_batch_generation</span> <span class="o">=</span> <span class="n">supports_batch_generation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span> <span class="o">=</span> <span class="n">SobolQMCNormalSampler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">monte_carlo_samples</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model_constructor</span> <span class="o">=</span> <span class="n">get_model_constructor</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">model</span><span class="p">)(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">model</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
 
-        <span class="c1"># set up turbo if requested</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">use_turbo</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">turbo_state</span> <span class="o">=</span> <span class="n">TurboState</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_variables</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;numerical_optimizer&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">validate_numerical_optimizer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">optimizer_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;grid&quot;</span><span class="p">:</span> <span class="n">GridOptimizer</span><span class="p">,</span> <span class="s2">&quot;LBFGS&quot;</span><span class="p">:</span> <span class="n">LBFGSOptimizer</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">LBFGSOptimizer</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">NumericalOptimizer</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">optimizer_dict</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">optimizer_dict</span><span class="p">[</span><span class="n">value</span><span class="p">]()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">optimizer_dict</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">optimizer_dict</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BayesianOptions</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">BayesianOptions</span><span class="p">()</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;turbo_controller&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">validate_turbo_controller</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;note default behavior is no use of turbo&quot;&quot;&quot;</span>
+        <span class="n">optimizer_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;optimize&quot;</span><span class="p">:</span> <span class="n">OptimizeTurboController</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;vocs&quot;</span><span class="p">]),</span>
+            <span class="s2">&quot;safety&quot;</span><span class="p">:</span> <span class="n">SafetyTurboController</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;vocs&quot;</span><span class="p">]),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">TurboController</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">optimizer_dict</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">optimizer_dict</span><span class="p">[</span><span class="n">value</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">optimizer_dict</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">optimizer_dict</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
 
     <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">new_data</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">n_candidates</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">supports_batch_generation</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
                 <span class="s2">&quot;This Bayesian algorithm does not currently support parallel candidate &quot;</span>
                 <span class="s2">&quot;generation&quot;</span>
             <span class="p">)</span>
 
-        <span class="c1"># if no data exists use random generator to generate candidates</span>
+        <span class="c1"># if no data exists raise error</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">random_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">n_initial</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;no data contained in generator, call `add_data` &quot;</span>
+                <span class="s2">&quot;method to add data, see also `Xopt.random_evaluate()`&quot;</span>
+            <span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># update internal model with internal data</span>
             <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="c1"># update TurBO state if used</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">turbo_controller</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">turbo_controller</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
             <span class="c1"># calculate optimization bounds</span>
             <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_optimization_bounds</span><span class="p">()</span>
@@ -1879,10 +1889,13 @@
             <span class="n">acq_funct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_acquisition</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
             <span class="c1"># get candidates</span>
-            <span class="n">candidates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimize_acqf</span><span class="p">(</span><span class="n">acq_funct</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">)</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numerical_optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
+                <span class="n">acq_funct</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">n_candidates</span>
+            <span class="p">)</span>
 
             <span class="c1"># post process candidates</span>
             <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_candidates</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+
             <span class="k">return</span> <span class="n">result</span>
 
     <span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">update_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
@@ -1896,13 +1909,10 @@
         <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no data available to build model&quot;</span><span class="p">)</span>
 
-        <span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_constructor</span><span class="o">.</span><span class="n">build_model</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
-
-        <span class="c1"># validate returned model</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_model</span><span class="p">(</span><span class="n">_model</span><span class="p">)</span>
+        <span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_constructor</span><span class="o">.</span><span class="n">build_model_from_vocs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">update_internal</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">_model</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">_model</span>
         <span class="k">return</span> <span class="n">_model</span>
 
     <span class="k">def</span> <span class="nf">get_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -1914,39 +1924,26 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a function that can be used to evaluate the acquisition function</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># need a sampler for botorch &gt; 0.8</span>
-        <span class="c1"># get input data</span>
-        <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span> <span class="o">=</span> <span class="n">get_sampler</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">.</span><span class="n">posterior</span><span class="p">(</span><span class="n">input_data</span><span class="p">),</span>
-            <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">monte_carlo_samples</span><span class="p">]),</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;model cannot be None&quot;</span><span class="p">)</span>
 
         <span class="c1"># get base acquisition function</span>
         <span class="n">acq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_acquisition</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
-        <span class="c1"># add proximal biasing if requested</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">acq</span> <span class="o">=</span> <span class="n">ProximalAcquisitionFunction</span><span class="p">(</span>
-                <span class="n">acq</span><span class="p">,</span>
-                <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">),</span>
-                <span class="n">transformed_weighting</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">use_transformed_proximal_weights</span><span class="p">,</span>
-                <span class="n">beta</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sampler</span> <span class="o">=</span> <span class="n">acq</span><span class="o">.</span><span class="n">sampler</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">sampler</span> <span class="o">=</span> <span class="n">SobolQMCNormalSampler</span><span class="p">(</span>
+                <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_monte_carlo_samples</span><span class="p">])</span>
+            <span class="p">)</span>
+
+        <span class="c1"># apply constraints if specified in vocs</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">constraints</span><span class="p">):</span>
+            <span class="n">acq</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
+                <span class="n">model</span><span class="p">,</span> <span class="n">acq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_constraint_callables</span><span class="p">(),</span> <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">acq</span>
-
-    <span class="k">def</span> <span class="nf">optimize_acqf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acq_funct</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">):</span>
-        <span class="c1"># get candidates in real domain</span>
-        <span class="n">candidates</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">optimize_acqf</span><span class="p">(</span>
-            <span class="n">acq_function</span><span class="o">=</span><span class="n">acq_funct</span><span class="p">,</span>
-            <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
-            <span class="n">q</span><span class="o">=</span><span class="n">n_candidates</span><span class="p">,</span>
-            <span class="n">raw_samples</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">raw_samples</span><span class="p">,</span>
-            <span class="n">num_restarts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">num_restarts</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">candidates</span>
 
     <span class="k">def</span> <span class="nf">get_optimum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;select the best point(s) (for multi-objective generators, given by the</span>
@@ -1959,12 +1956,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_get_constraint_callables</span><span class="p">(),</span>
         <span class="p">)</span>
 
-        <span class="n">result</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">optimize_acqf</span><span class="p">(</span>
-            <span class="n">acq_function</span><span class="o">=</span><span class="n">c_posterior_mean</span><span class="p">,</span>
-            <span class="n">bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds</span><span class="p">(),</span>
-            <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">raw_samples</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">raw_samples</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
-            <span class="n">num_restarts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">num_restarts</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numerical_optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
+            <span class="n">c_posterior_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds</span><span class="p">(),</span> <span class="mi">1</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_candidates</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -1972,6 +1965,14 @@
     <span class="k">def</span> <span class="nf">_process_candidates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Best candidate from optimize&quot;</span><span class="p">,</span> <span class="n">candidates</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">convert_numpy_to_inputs</span><span class="p">(</span><span class="n">candidates</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">_get_sampler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="n">get_sampler</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">posterior</span><span class="p">(</span><span class="n">input_data</span><span class="p">),</span>
+            <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_monte_carlo_samples</span><span class="p">]),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">sampler</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">_get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
@@ -1989,16 +1990,10 @@
         <span class="k">return</span> <span class="n">constraint_callables</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">train_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_tkwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># set device and data type for generator</span>
         <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">use_cuda</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
                 <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span>
             <span class="k">else</span><span class="p">:</span>
@@ -2020,53 +2015,24 @@
 <span class="sd">        - if max_travel_distances is not None limit max travel distance</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds</span><span class="p">()</span>
-
-        <span class="c1"># if using turbo, update turbo state and set bounds according to turbo state</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">use_turbo</span><span class="p">:</span>
-            <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_trust_region</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds</span><span class="p">())</span>
 
         <span class="c1"># if specified modify bounds to limit maximum travel distances</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">max_travel_distances</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_max_travel_distances_region</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_travel_distances</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_travel_bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_max_travel_distances_region</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+            <span class="n">bounds</span> <span class="o">=</span> <span class="n">rectilinear_domain_union</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">max_travel_bounds</span><span class="p">)</span>
+
+        <span class="c1"># if using turbo, update turbo state and set bounds according to turbo state</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">turbo_controller</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># set the best value</span>
+            <span class="n">turbo_bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">turbo_controller</span><span class="o">.</span><span class="n">get_trust_region</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+            <span class="n">bounds</span> <span class="o">=</span> <span class="n">rectilinear_domain_union</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">turbo_bounds</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">bounds</span>
 
-    <span class="k">def</span> <span class="nf">get_trust_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;get trust region based on turbo_state and last observation&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">use_turbo</span><span class="p">:</span>
-            <span class="n">objective_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objective_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-            <span class="c1"># if this is the first time we are updating the state use the best f</span>
-            <span class="c1"># instead of the last f</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span><span class="p">:</span>
-                <span class="n">y_last</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">objective_data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">y_last</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
-                    <span class="n">objective_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span>
-                <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">turbo_state</span> <span class="o">=</span> <span class="n">update_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turbo_state</span><span class="p">,</span> <span class="n">y_last</span><span class="p">)</span>
-
-            <span class="c1"># calculate trust region and apply to base bounds</span>
-            <span class="n">trust_region</span> <span class="o">=</span> <span class="n">get_trust_region</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
-                <span class="n">bounds</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">turbo_state</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">,</span>
-            <span class="p">)</span>
-
-            <span class="k">return</span> <span class="n">rectilinear_domain_union</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">trust_region</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="s2">&quot;cannot get trust region when `use_turbo` option is False&quot;</span>
-            <span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">get_max_travel_distances_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;get region based on max travel distances and last observation&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">)</span> <span class="o">!=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">)</span> <span class="o">!=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;length of max_travel_distances must match the number of &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;variables </span><span class="si">{</span><span class="n">bounds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -2082,38 +2048,18 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span>
         <span class="p">)</span>
 
-        <span class="c1"># bound lengths for normalization</span>
-        <span class="n">lengths</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="c1"># bound lengths based on vocs for normalization</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 
         <span class="c1"># get maximum travel distances</span>
         <span class="n">max_travel_distances</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
-            <span class="o">*</span> <span class="n">lengths</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span> <span class="o">*</span> <span class="n">lengths</span>
         <span class="p">)</span>
         <span class="n">max_travel_bounds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
             <span class="p">(</span><span class="n">last_point</span> <span class="o">-</span> <span class="n">max_travel_distances</span><span class="p">,</span> <span class="n">last_point</span> <span class="o">+</span> <span class="n">max_travel_distances</span><span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">rectilinear_domain_union</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">max_travel_bounds</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_check_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">n_lengthscales</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="n">n_lengthscales</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_variables</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Number of proximal lengthscales (</span><span class="si">{</span><span class="n">n_lengthscales</span><span class="si">}</span><span class="s2">) must match &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;number of variables </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_variables</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
-            <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">num_restarts</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;`options.optim.num_restarts` must be 1 when proximal biasing is &quot;</span>
-                    <span class="s2">&quot;specified&quot;</span>
-                <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_validate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ModelListGP</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;model must be ModelListGP object&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">max_travel_bounds</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -2145,54 +2091,50 @@
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a function that can be used to evaluate the acquisition function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># need a sampler for botorch &gt; 0.8</span>
-    <span class="c1"># get input data</span>
-    <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span> <span class="o">=</span> <span class="n">get_sampler</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">posterior</span><span class="p">(</span><span class="n">input_data</span><span class="p">),</span>
-        <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">monte_carlo_samples</span><span class="p">]),</span>
-    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;model cannot be None&quot;</span><span class="p">)</span>
 
     <span class="c1"># get base acquisition function</span>
     <span class="n">acq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_acquisition</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
-    <span class="c1"># add proximal biasing if requested</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">acq</span> <span class="o">=</span> <span class="n">ProximalAcquisitionFunction</span><span class="p">(</span>
-            <span class="n">acq</span><span class="p">,</span>
-            <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">proximal_lengthscales</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">),</span>
-            <span class="n">transformed_weighting</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">use_transformed_proximal_weights</span><span class="p">,</span>
-            <span class="n">beta</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="n">acq</span><span class="o">.</span><span class="n">sampler</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="n">SobolQMCNormalSampler</span><span class="p">(</span>
+            <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_monte_carlo_samples</span><span class="p">])</span>
+        <span class="p">)</span>
+
+    <span class="c1"># apply constraints if specified in vocs</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">constraints</span><span class="p">):</span>
+        <span class="n">acq</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">acq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_constraint_callables</span><span class="p">(),</span> <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">acq</span>
@@ -2218,39 +2160,38 @@
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span>
-<span class="normal">277</span>
-<span class="normal">278</span>
-<span class="normal">279</span>
-<span class="normal">280</span>
-<span class="normal">281</span>
-<span class="normal">282</span>
-<span class="normal">283</span>
-<span class="normal">284</span>
-<span class="normal">285</span>
-<span class="normal">286</span>
-<span class="normal">287</span>
-<span class="normal">288</span>
-<span class="normal">289</span>
-<span class="normal">290</span>
-<span class="normal">291</span>
-<span class="normal">292</span>
-<span class="normal">293</span>
-<span class="normal">294</span>
-<span class="normal">295</span>
-<span class="normal">296</span>
-<span class="normal">297</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">297</span>
 <span class="normal">298</span>
 <span class="normal">299</span>
 <span class="normal">300</span>
 <span class="normal">301</span>
 <span class="normal">302</span>
 <span class="normal">303</span>
-<span class="normal">304</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_max_travel_distances_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_max_travel_distances_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;get region based on max travel distances and last observation&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">)</span> <span class="o">!=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">)</span> <span class="o">!=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;length of max_travel_distances must match the number of &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;variables </span><span class="si">{</span><span class="n">bounds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -2266,19 +2207,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span>
     <span class="p">)</span>
 
-    <span class="c1"># bound lengths for normalization</span>
-    <span class="n">lengths</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="c1"># bound lengths based on vocs for normalization</span>
+    <span class="n">lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 
     <span class="c1"># get maximum travel distances</span>
     <span class="n">max_travel_distances</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
-        <span class="o">*</span> <span class="n">lengths</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span> <span class="o">*</span> <span class="n">lengths</span>
     <span class="p">)</span>
     <span class="n">max_travel_bounds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
         <span class="p">(</span><span class="n">last_point</span> <span class="o">-</span> <span class="n">max_travel_distances</span><span class="p">,</span> <span class="n">last_point</span> <span class="o">+</span> <span class="n">max_travel_distances</span><span class="p">)</span>
     <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">rectilinear_domain_union</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">max_travel_bounds</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">max_travel_bounds</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -2302,26 +2242,22 @@ model using the Posterior mean</p>
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
-<span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_optimum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_optimum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;select the best point(s) (for multi-objective generators, given by the</span>
 <span class="sd">    model using the Posterior mean&quot;&quot;&quot;</span>
     <span class="n">c_posterior_mean</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
@@ -2332,98 +2268,11 @@ model using the Posterior mean</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_get_constraint_callables</span><span class="p">(),</span>
     <span class="p">)</span>
 
-    <span class="n">result</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">optimize_acqf</span><span class="p">(</span>
-        <span class="n">acq_function</span><span class="o">=</span><span class="n">c_posterior_mean</span><span class="p">,</span>
-        <span class="n">bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds</span><span class="p">(),</span>
-        <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">raw_samples</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">raw_samples</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="n">num_restarts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">num_restarts</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numerical_optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
+        <span class="n">c_posterior_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds</span><span class="p">(),</span> <span class="mi">1</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_candidates</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="xopt.generators.bayesian.bayesian_generator.BayesianGenerator.get_trust_region" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_trust_region</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>get trust region based on turbo_state and last observation</p>
-
-      <details class="quote">
-        <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">242</span>
-<span class="normal">243</span>
-<span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
-<span class="normal">248</span>
-<span class="normal">249</span>
-<span class="normal">250</span>
-<span class="normal">251</span>
-<span class="normal">252</span>
-<span class="normal">253</span>
-<span class="normal">254</span>
-<span class="normal">255</span>
-<span class="normal">256</span>
-<span class="normal">257</span>
-<span class="normal">258</span>
-<span class="normal">259</span>
-<span class="normal">260</span>
-<span class="normal">261</span>
-<span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span>
-<span class="normal">270</span>
-<span class="normal">271</span>
-<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_trust_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;get trust region based on turbo_state and last observation&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">use_turbo</span><span class="p">:</span>
-        <span class="n">objective_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objective_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-        <span class="c1"># if this is the first time we are updating the state use the best f</span>
-        <span class="c1"># instead of the last f</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span><span class="p">:</span>
-            <span class="n">y_last</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">objective_data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">y_last</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
-                <span class="n">objective_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span>
-            <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">turbo_state</span> <span class="o">=</span> <span class="n">update_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turbo_state</span><span class="p">,</span> <span class="n">y_last</span><span class="p">)</span>
-
-        <span class="c1"># calculate trust region and apply to base bounds</span>
-        <span class="n">trust_region</span> <span class="o">=</span> <span class="n">get_trust_region</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
-            <span class="n">bounds</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">turbo_state</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">rectilinear_domain_union</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">trust_region</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-            <span class="s2">&quot;cannot get trust region when `use_turbo` option is False&quot;</span>
-        <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -2447,25 +2296,22 @@ constraints</p>
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">update_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">update_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a ModelListGP containing independent models for the objectives and</span>
 <span class="sd">    constraints</span>
@@ -2476,14 +2322,74 @@ constraints</p>
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no data available to build model&quot;</span><span class="p">)</span>
 
-    <span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_constructor</span><span class="o">.</span><span class="n">build_model</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
-
-    <span class="c1"># validate returned model</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_validate_model</span><span class="p">(</span><span class="n">_model</span><span class="p">)</span>
+    <span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_constructor</span><span class="o">.</span><span class="n">build_model_from_vocs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">update_internal</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">_model</span>
     <span class="k">return</span> <span class="n">_model</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="xopt.generators.bayesian.bayesian_generator.BayesianGenerator.validate_turbo_controller" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">validate_turbo_controller</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>note default behavior is no use of turbo</p>
+
+      <details class="quote">
+        <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;turbo_controller&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">validate_turbo_controller</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;note default behavior is no use of turbo&quot;&quot;&quot;</span>
+    <span class="n">optimizer_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;optimize&quot;</span><span class="p">:</span> <span class="n">OptimizeTurboController</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;vocs&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;safety&quot;</span><span class="p">:</span> <span class="n">SafetyTurboController</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;vocs&quot;</span><span class="p">]),</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">TurboController</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">optimizer_dict</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">optimizer_dict</span><span class="p">[</span><span class="n">value</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">optimizer_dict</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">optimizer_dict</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -2517,95 +2423,31 @@ constraints</p>
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/bayesian/bayesian_exploration.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianExplorationGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
-    <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;bayesian_exploration&quot;</span>
-    <span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Implements Bayeisan Exploration acquisition function&quot;&quot;&quot;</span>
-        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">format_option_descriptions</span><span class="p">(</span><span class="n">BayesianOptions</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generator using UpperConfidenceBound acquisition function</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        vocs: dict</span>
-<span class="sd">            Standard vocs for xopt</span>
-
-<span class="sd">        options: BayesianOptions</span>
-<span class="sd">            Options for the generator</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a BayesianOptions object&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;vocs must have one objective for exploration&quot;</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">supports_batch_generation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BayesianOptions</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">BayesianOptions</span><span class="p">()</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianExplorationGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;bayesian_exploration&quot;</span>
+    <span class="n">supports_batch_generation</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">_get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sampler</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="n">qPV</span> <span class="o">=</span> <span class="n">qPosteriorVariance</span><span class="p">(</span>
             <span class="n">model</span><span class="p">,</span>
-            <span class="n">sampler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="p">,</span>
+            <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
             <span class="n">objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_objective</span><span class="p">(),</span>
         <span class="p">)</span>
 
-        <span class="n">cqPV</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
-            <span class="n">model</span><span class="p">,</span>
-            <span class="n">qPV</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_get_constraint_callables</span><span class="p">(),</span>
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">cqPV</span>
+        <span class="k">return</span> <span class="n">qPV</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -2620,95 +2462,6 @@ constraints</p>
 
 
 
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="xopt.generators.bayesian.bayesian_exploration.BayesianExplorationGenerator.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Generator using UpperConfidenceBound acquisition function</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>vocs</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="xopt.vocs.VOCS" href="../../vocs/#xopt.vocs.VOCS">VOCS</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Standard vocs for xopt</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-      <p>options: BayesianOptions
-    Options for the generator</p>
-
-      <details class="quote">
-        <summary>Source code in <code>xopt/generators/bayesian/bayesian_exploration.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">BayesianOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generator using UpperConfidenceBound acquisition function</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    vocs: dict</span>
-<span class="sd">        Standard vocs for xopt</span>
-
-<span class="sd">    options: BayesianOptions</span>
-<span class="sd">        Options for the generator</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">BayesianOptions</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">BayesianOptions</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a BayesianOptions object&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;vocs must have one objective for exploration&quot;</span><span class="p">)</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">supports_batch_generation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
 
 
 
@@ -2731,177 +2484,83 @@ constraints</p>
 
   <div class="doc doc-contents first">
       <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="xopt.generators.bayesian.bayesian_generator.BayesianGenerator" href="#xopt.generators.bayesian.bayesian_generator.BayesianGenerator">BayesianGenerator</a></code></p>
+        Bases: <code><span title="xopt.generators.bayesian.bayesian_generator.MultiObjectiveBayesianGenerator">MultiObjectiveBayesianGenerator</span></code></p>
 
 
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/bayesian/mobo.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 27</span>
-<span class="normal"> 28</span>
-<span class="normal"> 29</span>
-<span class="normal"> 30</span>
-<span class="normal"> 31</span>
-<span class="normal"> 32</span>
-<span class="normal"> 33</span>
-<span class="normal"> 34</span>
-<span class="normal"> 35</span>
-<span class="normal"> 36</span>
-<span class="normal"> 37</span>
-<span class="normal"> 38</span>
-<span class="normal"> 39</span>
-<span class="normal"> 40</span>
-<span class="normal"> 41</span>
-<span class="normal"> 42</span>
-<span class="normal"> 43</span>
-<span class="normal"> 44</span>
-<span class="normal"> 45</span>
-<span class="normal"> 46</span>
-<span class="normal"> 47</span>
-<span class="normal"> 48</span>
-<span class="normal"> 49</span>
-<span class="normal"> 50</span>
-<span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
-<span class="normal"> 55</span>
-<span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
-<span class="normal"> 61</span>
-<span class="normal"> 62</span>
-<span class="normal"> 63</span>
-<span class="normal"> 64</span>
-<span class="normal"> 65</span>
-<span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
-    <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;mobo&quot;</span>
-    <span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Implements Multi-Objective Bayesian Optimization using the Expected</span>
-<span class="sd">            Hypervolume Improvement acquisition function&quot;&quot;&quot;</span>
-        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">format_option_descriptions</span><span class="p">(</span><span class="n">MOBOOptions</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">MOBOOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">MOBOOptions</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">MOBOOptions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a MOBOOptions object&quot;</span><span class="p">)</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">supports_batch_generation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">MOBOOptions</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">MOBOOptions</span><span class="p">()</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">reference_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">reference_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">XoptError</span><span class="p">(</span>
-                <span class="s2">&quot;referenece point must be specified for multi-objective &quot;</span> <span class="s2">&quot;algorithm&quot;</span>
-            <span class="p">)</span>
-
-        <span class="n">pt</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objective_names</span><span class="p">:</span>
-            <span class="n">ref_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">reference_point</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MINIMIZE&quot;</span><span class="p">:</span>
-                <span class="n">pt</span> <span class="o">+=</span> <span class="p">[</span><span class="o">-</span><span class="n">ref_val</span><span class="p">]</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MAXIMIZE&quot;</span><span class="p">:</span>
-                <span class="n">pt</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ref_val</span><span class="p">]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;objective type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="si">}</span><span class="s2"> not</span><span class="se">\</span>
-<span class="s2">                        supported&quot;</span>
-                <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MOBOGenerator</span><span class="p">(</span><span class="n">MultiObjectiveBayesianGenerator</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mobo&quot;</span>
+    <span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Implements Multi-Objective Bayesian Optimization using the Expected</span>
+<span class="s2">            Hypervolume Improvement acquisition function&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">create_mobo_objective</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a function that can be used to evaluate the acquisition function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;model cannot be None&quot;</span><span class="p">)</span>
+
+        <span class="c1"># get base acquisition function</span>
+        <span class="n">acq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_acquisition</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">acq</span>
+
     <span class="k">def</span> <span class="nf">_get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sampler</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
         <span class="c1"># fix problem with qNEHVI interpretation with constraints</span>
         <span class="n">acq</span> <span class="o">=</span> <span class="n">qNoisyExpectedHypervolumeImprovement</span><span class="p">(</span>
             <span class="n">model</span><span class="p">,</span>
             <span class="n">X_baseline</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">constraints</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_constraint_callables</span><span class="p">(),</span>
-            <span class="n">ref_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_point</span><span class="p">,</span>
-            <span class="n">sampler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="p">,</span>
+            <span class="n">ref_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">torch_reference_point</span><span class="p">,</span>
+            <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
             <span class="n">objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_objective</span><span class="p">(),</span>
             <span class="n">cache_root</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">prune_baseline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">acq</span>
-
-    <span class="k">def</span> <span class="nf">calculate_hypervolume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;compute hypervolume given data&quot;&quot;&quot;</span>
-        <span class="n">objective_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objective_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">return_raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-        <span class="p">)</span>
-
-        <span class="c1"># hypervolume must only take into account feasible data points</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_constraints</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">objective_data</span> <span class="o">=</span> <span class="n">objective_data</span><span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">feasibility_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;feasible&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-            <span class="p">]</span>
-
-        <span class="n">n_objectives</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span>
-        <span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_objectives</span><span class="p">)</span>
-        <span class="n">weights</span> <span class="o">=</span> <span class="n">set_botorch_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">)</span>
-        <span class="n">objective_data</span> <span class="o">=</span> <span class="n">objective_data</span> <span class="o">*</span> <span class="n">weights</span>
-
-        <span class="c1"># compute hypervolume</span>
-        <span class="n">bd</span> <span class="o">=</span> <span class="n">DominatedPartitioning</span><span class="p">(</span><span class="n">ref_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_point</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="n">objective_data</span><span class="p">)</span>
-        <span class="n">volume</span> <span class="o">=</span> <span class="n">bd</span><span class="o">.</span><span class="n">compute_hypervolume</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">volume</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -2921,61 +2580,37 @@ constraints</p>
 
 
 
-<h3 id="xopt.generators.bayesian.mobo.MOBOGenerator.calculate_hypervolume" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">calculate_hypervolume</span><span class="p">()</span></code>
+<h3 id="xopt.generators.bayesian.mobo.MOBOGenerator.get_acquisition" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_acquisition</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>compute hypervolume given data</p>
+      <p>Returns a function that can be used to evaluate the acquisition function</p>
 
       <details class="quote">
         <summary>Source code in <code>xopt/generators/bayesian/mobo.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_hypervolume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;compute hypervolume given data&quot;&quot;&quot;</span>
-    <span class="n">objective_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objective_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">return_raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-    <span class="p">)</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a function that can be used to evaluate the acquisition function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;model cannot be None&quot;</span><span class="p">)</span>
 
-    <span class="c1"># hypervolume must only take into account feasible data points</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_constraints</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">objective_data</span> <span class="o">=</span> <span class="n">objective_data</span><span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">feasibility_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;feasible&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-        <span class="p">]</span>
-
-    <span class="n">n_objectives</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span>
-    <span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_objectives</span><span class="p">)</span>
-    <span class="n">weights</span> <span class="o">=</span> <span class="n">set_botorch_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">)</span>
-    <span class="n">objective_data</span> <span class="o">=</span> <span class="n">objective_data</span> <span class="o">*</span> <span class="n">weights</span>
-
-    <span class="c1"># compute hypervolume</span>
-    <span class="n">bd</span> <span class="o">=</span> <span class="n">DominatedPartitioning</span><span class="p">(</span><span class="n">ref_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_point</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="n">objective_data</span><span class="p">)</span>
-    <span class="n">volume</span> <span class="o">=</span> <span class="n">bd</span><span class="o">.</span><span class="n">compute_hypervolume</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">volume</span>
+    <span class="c1"># get base acquisition function</span>
+    <span class="n">acq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_acquisition</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">acq</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -3009,101 +2644,39 @@ constraints</p>
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/bayesian/upper_confidence_bound.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
-    <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;upper_confidence_bound&quot;</span>
-    <span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Implements Bayeisan Optimization using the Upper Confidence Bound</span>
-<span class="sd">    acquisition function&quot;&quot;&quot;</span>
-        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">format_option_descriptions</span><span class="p">(</span><span class="n">UCBOptions</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generator using UpperConfidenceBound acquisition function</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        vocs: dict</span>
-<span class="sd">            Standard vocs dictionary for xopt</span>
-
-<span class="sd">        options: UpperConfidenceBoundOptions</span>
-<span class="sd">            Specific options for this generator</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">UCBOptions</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">UCBOptions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a UCBOptions object&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;vocs must have one objective for optimization&quot;</span><span class="p">)</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BayesianOptions</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">UCBOptions</span><span class="p">()</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;upper_confidence_bound&quot;</span>
+    <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Beta parameter for UCB optimization&quot;</span><span class="p">)</span>
+    <span class="n">supports_batch_generation</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Implements Bayeisan Optimization using the Upper Confidence Bound</span>
+<span class="s2">    acquisition function&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sampler</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="n">qUCB</span> <span class="o">=</span> <span class="n">qUpperConfidenceBound</span><span class="p">(</span>
             <span class="n">model</span><span class="p">,</span>
-            <span class="n">sampler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="p">,</span>
+            <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
             <span class="n">objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_objective</span><span class="p">(),</span>
-            <span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">acq</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span>
+            <span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">cqUCB</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
-            <span class="n">model</span><span class="p">,</span>
-            <span class="n">qUCB</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_get_constraint_callables</span><span class="p">(),</span>
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">cqUCB</span>
+        <span class="k">return</span> <span class="n">qUCB</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -3118,97 +2691,6 @@ constraints</p>
 
 
 
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="xopt.generators.bayesian.upper_confidence_bound.UpperConfidenceBoundGenerator.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Generator using UpperConfidenceBound acquisition function</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>vocs</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="xopt.vocs.VOCS" href="../../vocs/#xopt.vocs.VOCS">VOCS</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Standard vocs dictionary for xopt</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-      <p>options: UpperConfidenceBoundOptions
-    Specific options for this generator</p>
-
-      <details class="quote">
-        <summary>Source code in <code>xopt/generators/bayesian/upper_confidence_bound.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">:</span> <span class="n">VOCS</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">UCBOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generator using UpperConfidenceBound acquisition function</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    vocs: dict</span>
-<span class="sd">        Standard vocs dictionary for xopt</span>
-
-<span class="sd">    options: UpperConfidenceBoundOptions</span>
-<span class="sd">        Specific options for this generator</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">UCBOptions</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">UCBOptions</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;options must be a UCBOptions object&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">vocs</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;vocs must have one objective for optimization&quot;</span><span class="p">)</span>
-
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
 
 
 
@@ -3270,7 +2752,7 @@ constraints</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>

@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -674,8 +674,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../examples/single_objective_bayes_opt/expected_improvement_rosenbrock/" class="md-nav__link">
-        Expected Improvement BO
+      <a href="../../../examples/single_objective_bayes_opt/expected_improvement_rosenbrock.ipynb" class="md-nav__link">
+        Expected improvement
       </a>
     </li>
   
@@ -745,7 +745,7 @@
   
     <li class="md-nav__item">
       <a href="../../../examples/single_objective_bayes_opt/bax_tutorial/" class="md-nav__link">
-        Imports and random seeding for reproducibility
+        Basic Optimization using BAX
       </a>
     </li>
   
@@ -1357,7 +1357,8 @@
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/scipy/neldermead.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">141</span>
+<span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
@@ -1391,46 +1392,21 @@
 <span class="normal">173</span>
 <span class="normal">174</span>
 <span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
-<span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">NelderMeadGenerator</span><span class="p">(</span><span class="n">ScipyOptimizeGenerator</span><span class="p">):</span>
+<span class="normal">176</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">NelderMeadGenerator</span><span class="p">(</span><span class="n">ScipyOptimizeGenerator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Nelder-Mead algorithm from SciPy in Xopt&#39;s Generator form.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;neldermead&quot;</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">default_options</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">NelderMeadOptions</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">NelderMeadOptions</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">NelderMeadOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="n">NelderMeadOptions</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">NelderMeadOptions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;options must be of type NedlerMeadOptions&quot;</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vocs</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;neldermead&quot;</span>
 
     <span class="k">def</span> <span class="nf">_init_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        sets self._algorithm to the generator function (initializing it).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span>  <span class="c1"># convenience</span>
-
-        <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">initial_simplex</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_simplex</span><span class="p">:</span>
             <span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">initial_simplex</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">]</span>
+                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_simplex</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">]</span>
             <span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">sim</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1438,9 +1414,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span> <span class="o">=</span> <span class="n">_neldermead_generator</span><span class="p">(</span>  <span class="c1"># adapted from scipy.optimize</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span>  <span class="c1"># Handled by base class</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span>  <span class="c1"># Handled by base class</span>
-            <span class="n">adaptive</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">adaptive</span><span class="p">,</span>
-            <span class="n">xatol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">xatol</span><span class="p">,</span>
-            <span class="n">fatol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">fatol</span><span class="p">,</span>
+            <span class="n">adaptive</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">adaptive</span><span class="p">,</span>
+            <span class="n">xatol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xatol</span><span class="p">,</span>
+            <span class="n">fatol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fatol</span><span class="p">,</span>
             <span class="n">initial_simplex</span><span class="o">=</span><span class="n">sim</span><span class="p">,</span>
             <span class="n">bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1450,7 +1426,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the simplex in the current state.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+        <span class="n">sim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -1548,7 +1524,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>
