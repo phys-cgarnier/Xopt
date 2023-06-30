@@ -2147,7 +2147,7 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">strict</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">future</span><span class="o">.</span><span class="n">exception</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="n">future</span><span class="o">.</span><span class="n">exception</span><span class="p">()</span>
-                <span class="n">validate_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+                <span class="n">validate_outputs</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
             <span class="n">output_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
 
         <span class="c1"># Special handling of a vectorized futures.</span>
@@ -2849,7 +2849,7 @@ of Xopt and generator, finally return the number of unfinished futures</p>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">strict</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">future</span><span class="o">.</span><span class="n">exception</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">future</span><span class="o">.</span><span class="n">exception</span><span class="p">()</span>
-            <span class="n">validate_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+            <span class="n">validate_outputs</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
         <span class="n">output_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
 
     <span class="c1"># Special handling of a vectorized futures.</span>
