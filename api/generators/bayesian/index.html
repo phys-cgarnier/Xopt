@@ -2423,8 +2423,7 @@ constraints</p>
 
         <details class="quote">
           <summary>Source code in <code>xopt/generators/bayesian/bayesian_exploration.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
-<span class="normal">14</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -2435,7 +2434,14 @@ constraints</p>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianExplorationGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianExplorationGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;bayesian_exploration&quot;</span>
     <span class="n">supports_batch_generation</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -2448,6 +2454,12 @@ constraints</p>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">qPV</span>
+
+    <span class="k">def</span> <span class="nf">_get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;return exploration objective, which only captures the output of the first</span>
+<span class="sd">        model output&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">create_exploration_objective</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
