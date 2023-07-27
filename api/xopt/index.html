@@ -15,7 +15,7 @@
         <link rel="next" href="../vocs/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.1.19">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
@@ -628,6 +628,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
@@ -748,6 +750,20 @@
     <li class="md-nav__item">
       <a href="../../examples/single_objective_bayes_opt/bax_tutorial/" class="md-nav__link">
         Basic Optimization using BAX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/single_objective_bayes_opt/fixed_features/" class="md-nav__link">
+        Bayesian optimization with fixed features
       </a>
     </li>
   
@@ -1523,7 +1539,7 @@
 
 
 <h2 id="xopt.Xopt" class="doc doc-heading">
-        <code>xopt.Xopt</code>
+          <code>xopt.Xopt</code>
 
 
 </h2>
@@ -1534,10 +1550,9 @@
   
       <p>Object to handle a single optimization problem.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>xopt/base.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 48</span>
+            <details class="quote">
+              <summary>Source code in <code>xopt/base.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 48</span>
 <span class="normal"> 49</span>
 <span class="normal"> 50</span>
 <span class="normal"> 51</span>
@@ -2337,11 +2352,12 @@
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_data</span><span class="p">(</span><span class="n">random_inputs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -2373,9 +2389,9 @@ options: XoptOptions object
 data: initial data to use
 </code></pre></div>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 55</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 55</span>
 <span class="normal"> 56</span>
 <span class="normal"> 57</span>
 <span class="normal"> 58</span>
@@ -2489,10 +2505,11 @@ data: initial data to use
     <span class="bp">self</span><span class="o">.</span><span class="n">check_components</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Xopt object initialized&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2509,9 +2526,9 @@ data: initial data to use
       <p>Concatenate new data to internal dataframe,
 and also adds this data to the generator if it exists.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">345</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">345</span>
 <span class="normal">346</span>
 <span class="normal">347</span>
 <span class="normal">348</span>
@@ -2545,10 +2562,11 @@ and also adds this data to the generator if it exists.</p>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2564,9 +2582,9 @@ and also adds this data to the generator if it exists.</p>
   
       <p>check to make sure everything is in place to step</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">311</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">311</span>
 <span class="normal">312</span>
 <span class="normal">313</span>
 <span class="normal">314</span>
@@ -2592,10 +2610,11 @@ and also adds this data to the generator if it exists.</p>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">XoptError</span><span class="p">(</span><span class="s2">&quot;Xopt VOCS is not specified&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2611,9 +2630,9 @@ and also adds this data to the generator if it exists.</p>
   
       <p>dump data to file</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">325</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">325</span>
 <span class="normal">326</span>
 <span class="normal">327</span>
 <span class="normal">328</span>
@@ -2627,10 +2646,11 @@ and also adds this data to the generator if it exists.</p>
             <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dumped state to YAML file: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dump_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2646,9 +2666,9 @@ and also adds this data to the generator if it exists.</p>
   
       <p>Convenience method to call evaluator.evaluate</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">431</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">431</span>
 <span class="normal">432</span>
 <span class="normal">433</span>
 <span class="normal">434</span>
@@ -2658,10 +2678,11 @@ and also adds this data to the generator if it exists.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2678,9 +2699,9 @@ and also adds this data to the generator if it exists.</p>
       <p>Evaluate data using the evaluator.
 Adds to the internal dataframe.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
@@ -2722,10 +2743,11 @@ Adds to the internal dataframe.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">new_data</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2741,9 +2763,9 @@ Adds to the internal dataframe.</p>
   
       <p>re-index and validate input data.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">178</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">178</span>
 <span class="normal">179</span>
 <span class="normal">180</span>
 <span class="normal">181</span>
@@ -2777,10 +2799,11 @@ Adds to the internal dataframe.</p>
 
     <span class="k">return</span> <span class="n">input_data</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2797,9 +2820,9 @@ Adds to the internal dataframe.</p>
       <p>wait for futures to finish (specified by asynch) and then internal dataframes
 of Xopt and generator, finally return the number of unfinished futures</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">247</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">247</span>
 <span class="normal">248</span>
 <span class="normal">249</span>
 <span class="normal">250</span>
@@ -2925,10 +2948,11 @@ of Xopt and generator, finally return the number of unfinished futures</p>
 
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">unfinished_futures</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2945,9 +2969,9 @@ of Xopt and generator, finally return the number of unfinished futures</p>
       <p>Convenience method to generate random inputs using vocs
 and evaluate them (adding data to Xopt object and generator.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">437</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">437</span>
 <span class="normal">438</span>
 <span class="normal">439</span>
 <span class="normal">440</span>
@@ -2969,10 +2993,11 @@ and evaluate them (adding data to Xopt object and generator.</p>
     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_data</span><span class="p">(</span><span class="n">random_inputs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2988,9 +3013,9 @@ and evaluate them (adding data to Xopt object and generator.</p>
   
       <p>Convenence method to call vocs.random_inputs</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">425</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">425</span>
 <span class="normal">426</span>
 <span class="normal">427</span>
 <span class="normal">428</span>
@@ -3000,10 +3025,11 @@ and evaluate them (adding data to Xopt object and generator.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">random_inputs</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3019,9 +3045,9 @@ and evaluate them (adding data to Xopt object and generator.</p>
   
       <p>run until either xopt is done or the generator is done</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
 <span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
@@ -3049,10 +3075,11 @@ and evaluate them (adding data to Xopt object and generator.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3076,9 +3103,9 @@ and evaluate them (adding data to Xopt object and generator.</p>
 <li>update data storage and generator data storage (if applicable)</li>
 </ul>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">196</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">196</span>
 <span class="normal">197</span>
 <span class="normal">198</span>
 <span class="normal">199</span>
@@ -3178,10 +3205,11 @@ and evaluate them (adding data to Xopt object and generator.</p>
     <span class="c1"># dump data to file if specified</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dump_state</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3199,9 +3227,9 @@ and evaluate them (adding data to Xopt object and generator.</p>
 <p>Args:
     input_data: dataframe containing input data</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
@@ -3255,10 +3283,11 @@ and evaluate them (adding data to Xopt object and generator.</p>
     <span class="c1"># self._futures.update(new_futures)</span>
     <span class="k">return</span> <span class="n">futures</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3274,9 +3303,9 @@ and evaluate them (adding data to Xopt object and generator.</p>
   
       <p>YAML representation of the Xopt object.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/base.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">394</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/base.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">394</span>
 <span class="normal">395</span>
 <span class="normal">396</span>
 <span class="normal">397</span>
@@ -3300,7 +3329,7 @@ and evaluate them (adding data to Xopt object and generator.</p>
 
     <span class="k">return</span> <span class="n">s</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>

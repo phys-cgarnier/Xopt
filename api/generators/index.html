@@ -15,7 +15,7 @@
         <link rel="next" href="bayesian/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.1.19">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
@@ -628,6 +628,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
@@ -748,6 +750,20 @@
     <li class="md-nav__item">
       <a href="../../examples/single_objective_bayes_opt/bax_tutorial/" class="md-nav__link">
         Basic Optimization using BAX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/single_objective_bayes_opt/fixed_features/" class="md-nav__link">
+        Bayesian optimization with fixed features
       </a>
     </li>
   
@@ -1397,7 +1413,7 @@
 
 
 <h2 id="xopt.generator" class="doc doc-heading">
-          <code>xopt.generator</code>
+            <code>xopt.generator</code>
 
 
 </h2>
@@ -1420,21 +1436,20 @@
 
 
 <h3 id="xopt.generator.Generator" class="doc doc-heading">
-        <code>Generator</code>
+          <code>Generator</code>
 
 
 </h3>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="xopt.pydantic.XoptBaseModel">XoptBaseModel</span></code>, <code><span title="abc.ABC">ABC</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="xopt.pydantic.XoptBaseModel">XoptBaseModel</span></code>, <code><span title="abc.ABC">ABC</span></code></p>
 
 
-
-        <details class="quote">
-          <summary>Source code in <code>xopt/generator.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+            <details class="quote">
+              <summary>Source code in <code>xopt/generator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -1544,11 +1559,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -1575,9 +1591,9 @@
     vocs: The vocs to use.
     options: The options to use.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/generator.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
@@ -1599,10 +1615,11 @@
     <span class="n">_check_vocs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">supports_multi_objective</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initialized generator </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -1619,9 +1636,9 @@
       <p>update dataframe with results from new evaluations.</p>
 <p>This is intended for generators that maintain their own data.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/generator.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
@@ -1637,10 +1654,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -1660,9 +1678,9 @@
   
       <p>generate <code>n_candidates</code> candidates</p>
 
-      <details class="quote">
-        <summary>Source code in <code>xopt/generator.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+          <details class="quote">
+            <summary>Source code in <code>xopt/generator.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
@@ -1676,7 +1694,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
