@@ -1917,7 +1917,9 @@
 <span class="normal">443</span>
 <span class="normal">444</span>
 <span class="normal">445</span>
-<span class="normal">446</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BayesianGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;base_bayesian_generator&quot;</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;botorch model used by the generator to perform optimization&quot;</span>
@@ -1947,6 +1949,7 @@
         <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([]),</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;data frame tracking computation time in seconds&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">n_candidates</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;model_constructor&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">validate_model_constructor</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -2022,6 +2025,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">new_data</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_candidates</span> <span class="o">=</span> <span class="n">n_candidates</span>
         <span class="k">if</span> <span class="n">n_candidates</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">supports_batch_generation</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
                 <span class="s2">&quot;This Bayesian algorithm does not currently support parallel candidate &quot;</span>
@@ -2378,9 +2382,7 @@
 
           <details class="quote">
             <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">247</span>
-<span class="normal">248</span>
-<span class="normal">249</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">249</span>
 <span class="normal">250</span>
 <span class="normal">251</span>
 <span class="normal">252</span>
@@ -2415,7 +2417,9 @@
 <span class="normal">281</span>
 <span class="normal">282</span>
 <span class="normal">283</span>
-<span class="normal">284</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a function that can be used to evaluate the acquisition function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2477,9 +2481,7 @@ model using the Posterior mean</p>
 
           <details class="quote">
             <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">286</span>
-<span class="normal">287</span>
-<span class="normal">288</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">288</span>
 <span class="normal">289</span>
 <span class="normal">290</span>
 <span class="normal">291</span>
@@ -2492,7 +2494,9 @@ model using the Posterior mean</p>
 <span class="normal">298</span>
 <span class="normal">299</span>
 <span class="normal">300</span>
-<span class="normal">301</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_optimum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_optimum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;select the best point(s) given by the</span>
 <span class="sd">    model using the Posterior mean&quot;&quot;&quot;</span>
     <span class="n">c_posterior_mean</span> <span class="o">=</span> <span class="n">ConstrainedMCAcquisitionFunction</span><span class="p">(</span>
@@ -2532,9 +2536,7 @@ acquisition function</p>
 
           <details class="quote">
             <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span>
 <span class="normal">229</span>
@@ -2550,7 +2552,9 @@ acquisition function</p>
 <span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span>
-<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">propose_candidates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">n_candidates</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">propose_candidates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">n_candidates</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    given a GP model, propose candidates by numerically optimizing the</span>
 <span class="sd">    acquisition function</span>
@@ -2593,9 +2597,7 @@ constraints</p>
 
           <details class="quote">
             <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
 <span class="normal">192</span>
@@ -2628,7 +2630,9 @@ constraints</p>
 <span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
-<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">update_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">update_internal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a ModelListGP containing independent models for the objectives and</span>
 <span class="sd">    constraints</span>
@@ -2687,8 +2691,7 @@ constraints</p>
 
           <details class="quote">
             <summary>Source code in <code>xopt/generators/bayesian/bayesian_generator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">111</span>
-<span class="normal">112</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
 <span class="normal">115</span>
@@ -2707,7 +2710,8 @@ constraints</p>
 <span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
-<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;turbo_controller&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="normal">131</span>
+<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;turbo_controller&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">validate_turbo_controller</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;note default behavior is no use of turbo&quot;&quot;&quot;</span>
     <span class="n">optimizer_dict</span> <span class="o">=</span> <span class="p">{</span>
@@ -2992,13 +2996,7 @@ constraints</p>
 
             <details class="quote">
               <summary>Source code in <code>xopt/generators/bayesian/upper_confidence_bound.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -3008,7 +3006,23 @@ constraints</p>
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">BayesianGenerator</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;upper_confidence_bound&quot;</span>
     <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Beta parameter for UCB optimization&quot;</span><span class="p">)</span>
     <span class="n">supports_batch_generation</span> <span class="o">=</span> <span class="kc">True</span>
@@ -3016,15 +3030,25 @@ constraints</p>
 <span class="s2">    acquisition function&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="n">sampler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sampler</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-        <span class="n">qUCB</span> <span class="o">=</span> <span class="n">qUpperConfidenceBound</span><span class="p">(</span>
-            <span class="n">model</span><span class="p">,</span>
-            <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
-            <span class="n">objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_objective</span><span class="p">(),</span>
-            <span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_candidates</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># MC sampling for generating multiple candidate points</span>
+            <span class="n">sampler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sampler</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+            <span class="n">acq</span> <span class="o">=</span> <span class="n">qUpperConfidenceBound</span><span class="p">(</span>
+                <span class="n">model</span><span class="p">,</span>
+                <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
+                <span class="n">objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_objective</span><span class="p">(),</span>
+                <span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># analytic acquisition function for single candidate generation</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">n_outputs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">set_botorch_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="p">)</span>
+            <span class="n">posterior_transform</span> <span class="o">=</span> <span class="n">ScalarizedPosteriorTransform</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+            <span class="n">acq</span> <span class="o">=</span> <span class="n">UpperConfidenceBound</span><span class="p">(</span>
+                <span class="n">model</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="n">posterior_transform</span><span class="o">=</span><span class="n">posterior_transform</span>
+            <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">qUCB</span>
+        <span class="k">return</span> <span class="n">acq</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
