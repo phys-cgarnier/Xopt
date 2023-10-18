@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.d451bc0e.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.a5377069.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -1658,28 +1658,43 @@
 <h1 id="xopt">Xopt</h1>
 <p>Flexible optimization of arbitrary problems in Python.</p>
 <p>The goal of this package is to provide advanced algorithmic support for arbitrary 
-simulations/control systems with minimal required coding. Users can easily connect 
+optimization problems (simulations/control systems) with minimal required coding. Users 
+can easily connect 
 arbitrary evaluation functions to advanced algorithms with minimal coding with 
 support for multi-threaded or MPI-enabled execution.</p>
 <p>Currenty <strong>Xopt</strong> provides:</p>
 <ul>
-<li>optimization algorithms:<ul>
-<li><code>cnsga</code> Continuous NSGA-II with constraints.</li>
-<li><code>upper_confidence_bound</code> Single objective Bayesian optimization (w/ or w/o 
-   constraints, serial or parallel).</li>
-<li><code>mobo</code> Multi-objective Bayesian optimization (w/ or w/o constraints, serial or parallel).</li>
-<li><code>bayesian_exploration</code> Bayesian exploration.</li>
+<li>Optimization algorithms:</li>
+<li>Genetic algorithms<ul>
+<li><code>cnsga</code> Continuous NSGA-II with constraints</li>
 </ul>
 </li>
-<li>sampling algorithms:<ul>
-<li><code>random sampler</code></li>
+<li>Bayesian optimization (BO) algorithms:<ul>
+<li><code>upper_confidence_bound</code> BO using Upper Confidence Bound acquisition function 
+  (w/ or w/o constraints, serial or parallel)</li>
+<li><code>expected_improvement</code> BO using Expected Improvement acquisition function 
+  (w/ or w/o constraints, serial or parallel)</li>
+<li><code>mobo</code> Multi-objective BO (w/ or w/o constraints, serial or parallel)</li>
+<li><code>bayesian_exploration</code> Autonomous function characterization using Bayesian 
+  Exploration</li>
+<li><code>mggpo</code> Parallelized hybrid Multi-Generation Multi-Objective Bayesian 
+  optimization</li>
+<li><code>multi_fidelity</code> Multi-fidelity single or multi objective optimization</li>
+<li><code>BAX</code> Bayesian algorithm execution using virtual measurements</li>
+<li>BO customization:</li>
+<li>Trust region BO</li>
+<li>Heteroskedastic noise specification</li>
+<li>Multiple acquisition function optimization stratigies</li>
 </ul>
 </li>
-<li>Convenient YAML/JSON based input format.</li>
-<li>Driver programs:<ul>
-<li><code>xopt.mpi.run</code> Parallel MPI execution using this input format.</li>
-</ul>
-</li>
+<li><code>extremum_seeking</code> Extremum seeking time-dependent optimization</li>
+<li><code>rcds</code> Robust Conjugate Direction Search (RCDS)</li>
+<li><code>neldermead</code> Nelder-Mead Simplex</li>
+<li>Sampling algorithms:</li>
+<li><code>random</code> Uniform random sampling</li>
+<li>Convenient YAML/JSON based input format</li>
+<li>Driver programs:</li>
+<li><code>xopt.mpi.run</code> Parallel MPI execution using this input format</li>
 </ul>
 <p><strong>Xopt</strong> does <strong>not</strong> provide: 
 - your custom simulation via an <code>evaluate</code> function.</p>
@@ -1692,39 +1707,73 @@ implemented in the Xopt <code>Generator</code> framework.</p>
 <p><a href="examples/bayes_opt/bo_tutorial.ipynb">Simple Bayesian Optimization Example</a> shows 
 Xopt usage for a simple optimization problem.</p>
 <h1 id="configuring-an-xopt-run">Configuring an Xopt run</h1>
-<p>Xopt runs are specified via a dictionary that can be directly imported from a YAML 
-file.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">xopt</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">max_evaluations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6400</span>
-
-<span class="nt">generator</span><span class="p">:</span>
+<p>Xopt runs can be specified via a YAML file or dictonary input. This requires <code>generator</code>, <code>evaluator</code>, and <code>vocs</code> to be specified, along with optional general options such as <code>max_evaluations</code>. An example to run a multi-objective optimiation of a user-defined function <code>my_function</code> is:
+<div class="highlight"><pre><span></span><code><span class="nt">generator</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cnsga</span>
 <span class="w">    </span><span class="nt">population_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span>
 <span class="w">    </span><span class="nt">population_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test.csv</span>
 <span class="w">    </span><span class="nt">output_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
 
 <span class="nt">evaluator</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xopt.resources.test_functions.tnk.evaluate_TNK</span>
+<span class="w">    </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_function</span>
 <span class="w">    </span><span class="nt">function_kwargs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">raise_probability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">      </span><span class="nt">my_arguments</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
 
 <span class="nt">vocs</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">variables</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">x1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.14159</span><span class="p p-Indicator">]</span>
 <span class="w">        </span><span class="nt">x2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.14159</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">objectives</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">y1</span><span class="p">:</span><span class="w"> </span><span class="nv">MINIMIZE</span><span class="p p-Indicator">,</span><span class="nt"> y2</span><span class="p">:</span><span class="w"> </span><span class="nv">MINIMIZE</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">objectives</span><span class="p">:</span><span class="w"> </span>
+<span class="w">        </span><span class="nt">y1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MINIMIZE</span>
+<span class="w">        </span><span class="nt">y2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MINIMIZE</span>
 <span class="w">    </span><span class="nt">constraints</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">c1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">GREATER_THAN</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">]</span>
 <span class="w">        </span><span class="nt">c2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">LESS_THAN</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">constants</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">a</span><span class="p">:</span><span class="w"> </span><span class="nv">dummy_constant</span><span class="p p-Indicator">}</span>
-</code></pre></div>
-<h1 id="defining-evaluation-function">Defining evaluation function</h1>
+
+<span class="nt">max_evaluations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6400</span><span class="w">    </span>
+</code></pre></div></p>
+<p>Xopt can also be used through a simple Python interface.
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">xopt.vocs</span> <span class="kn">import</span> <span class="n">VOCS</span>
+<span class="kn">from</span> <span class="nn">xopt.evaluator</span> <span class="kn">import</span> <span class="n">Evaluator</span>
+<span class="kn">from</span> <span class="nn">xopt.generators.bayesian</span> <span class="kn">import</span> <span class="n">UpperConfidenceBoundGenerator</span>
+<span class="kn">from</span> <span class="nn">xopt</span> <span class="kn">import</span> <span class="n">Xopt</span>
+
+<span class="c1"># define variables and function objectives</span>
+<span class="n">vocs</span> <span class="o">=</span> <span class="n">VOCS</span><span class="p">(</span>
+    <span class="n">variables</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">]},</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="s2">&quot;MINIMIZE&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1"># define the function to optimize</span>
+<span class="k">def</span> <span class="nf">sin_function</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])}</span>
+
+<span class="c1"># create Xopt evaluator, generator, and Xopt objects</span>
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">sin_function</span><span class="p">)</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">UpperConfidenceBoundGenerator</span><span class="p">(</span><span class="n">vocs</span><span class="o">=</span><span class="n">vocs</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">Xopt</span><span class="p">(</span><span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span> <span class="n">vocs</span><span class="o">=</span><span class="n">vocs</span><span class="p">)</span>
+
+<span class="c1"># call X.random_evaluate() to generate + evaluate 3 initial points</span>
+<span class="n">X</span><span class="o">.</span><span class="n">random_evaluate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># run optimization for 10 steps</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">X</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+<span class="c1"># view collected data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></p>
+<h1 id="defining-an-evaluation-function">Defining an evaluation function</h1>
 <p>Xopt can interface with arbitrary evaluate functions (defined in Python) with the 
 following form:
-<div class="highlight"><pre><span></span><code><span class="n">evaluate</span><span class="p">(</span><span class="n">inputs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">inputs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; your code here &quot;&quot;&quot;</span>
 </code></pre></div>
 Evaluate functions must accept a dictionary object that <strong>at least</strong> has the keys 
-specified in <code>variables, constants, linked_variables</code> and returns a dictionary 
+specified in <code>variables, constants</code> and returns a dictionary 
 containing <strong>at least</strong> the 
 keys contained in <code>objectives, constraints</code>. Extra dictionary keys are tracked and 
 used in the evaluate function but are not modified by xopt.</p>
@@ -1732,6 +1781,34 @@ used in the evaluate function but are not modified by xopt.</p>
 <p>Example MPI run, with <code>xopt.yaml</code> as the only user-defined file:
 <div class="highlight"><pre><span></span><code>mpirun -n 64 python -m mpi4py.futures -m xopt.mpi.run xopt.yaml
 </code></pre></div></p>
+<h1 id="citing-xopt">Citing Xopt</h1>
+<p>If you use <code>Xopt</code> for your research, please consider adding the following 
+citation to your publications.
+<div class="highlight"><pre><span></span><code>R. Roussel., et al., &quot;Xopt: A simplified framework for optimization of accelerator problems using advanced algorithms&quot;, 
+in Proc. IPAC&#39;23, Venezia.doi:https://doi.org/10.18429/JACoW-14th International Particle Accelerator Conference-THPL164
+</code></pre></div></p>
+<p>BibTex entry:
+<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">Xopt</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{Xopt: A simplified framework for optimization of accelerator problems using advanced algorithms}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{R. Roussel and A. Edelen and A. Bartnik and C. Mayes}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="m">2023</span><span class="p">,</span>
+<span class="w">    </span><span class="na">month</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{05}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">booktitle</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{Proc. IPAC&#39;23}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">publisher</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{JACoW Publishing, Geneva, Switzerland}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">series</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{IPAC&#39;23 - 14th International Particle Accelerator Conference}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">number</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span>
+<span class="w">    </span><span class="na">pages</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{4796--4799}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">doi</span><span class="w">          </span><span class="p">=</span><span class="w"> </span><span class="s">{doi:10.18429/jacow-ipac2023-thpl164}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">isbn</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{978-3-95450-231-8}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">issn</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{2673-5490}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">url</span><span class="w">          </span><span class="p">=</span><span class="w"> </span><span class="s">{https://indico.jacow.org/event/41/contributions/2556}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">paper</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{THPL164}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">venue</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{Venezia}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">language</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{english}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Particular versions of Xopt can be cited from <a href="https://zenodo.org/record/7983779">Zenodo</a>
+```</p>
 
 
 
@@ -1746,10 +1823,10 @@ used in the evaluate function but are not modified by xopt.</p>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -1783,10 +1860,11 @@ used in the evaluate function but are not modified by xopt.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.726fbb30.min.js"></script>
+      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
       
     
   </body>
