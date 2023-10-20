@@ -741,8 +741,6 @@
       
         
       
-        
-      
     
     
     
@@ -824,26 +822,6 @@
   
   <span class="md-ellipsis">
     Upper Confidence Bound BO
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/single_objective_bayes_opt/expected_improvement_rosenbrock.ipynb" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement
   </span>
   
 
@@ -2451,7 +2429,9 @@ to describe optimization problems.</p>
 <span class="normal">417</span>
 <span class="normal">418</span>
 <span class="normal">419</span>
-<span class="normal">420</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VOCS</span><span class="p">(</span><span class="n">XoptBaseModel</span><span class="p">):</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VOCS</span><span class="p">(</span><span class="n">XoptBaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Variables, Objectives, Constraints, and other Settings (VOCS) data structure</span>
 <span class="sd">    to describe optimization problems.</span>
@@ -2824,7 +2804,9 @@ to describe optimization problems.</p>
 <span class="sd">            value: value of best point</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;cannot select best point when n_objectives is not 1&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;cannot select best point when n_objectives is not 1&quot;</span>
+            <span class="p">)</span>
 
         <span class="n">feasible_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feasibility_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">ascending_flag</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;MINIMIZE&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;MAXIMIZE&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
@@ -4197,7 +4179,9 @@ seed (integer) to initialize the random number generator</p>
 <span class="normal">417</span>
 <span class="normal">418</span>
 <span class="normal">419</span>
-<span class="normal">420</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">select_best</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">select_best</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    get the best value and point for a given data set based on vocs</span>
 <span class="sd">    - does not work for multi-objective problems</span>
@@ -4212,7 +4196,9 @@ seed (integer) to initialize the random number generator</p>
 <span class="sd">        value: value of best point</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_objectives</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;cannot select best point when n_objectives is not 1&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;cannot select best point when n_objectives is not 1&quot;</span>
+        <span class="p">)</span>
 
     <span class="n">feasible_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feasibility_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">ascending_flag</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;MINIMIZE&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;MAXIMIZE&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
