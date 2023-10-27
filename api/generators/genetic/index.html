@@ -1909,7 +1909,7 @@
 <span class="normal">164</span>
 <span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CNSGAGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;cnsga&quot;</span>
-    <span class="n">supports_multi_objective</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">supports_multi_objective</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">population_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Population size&quot;</span><span class="p">)</span>
     <span class="n">crossover_probability</span><span class="p">:</span> <span class="n">confloat</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">0.9</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Crossover probability&quot;</span>
