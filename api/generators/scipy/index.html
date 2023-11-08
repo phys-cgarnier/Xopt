@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.356b1318.min.css">
@@ -739,6 +739,8 @@
       
         
       
+        
+      
     
     
     
@@ -800,6 +802,26 @@
   
   <span class="md-ellipsis">
     Constrained optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/single_objective_bayes_opt/log_transformed_tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log-transformed optimization
   </span>
   
 
@@ -1610,6 +1632,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#xopt.generators.scipy.neldermead.NelderMeadGenerator.x0" class="md-nav__link">
+    x0
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1672,6 +1701,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#xopt.generators.scipy.neldermead.NelderMeadGenerator.x0" class="md-nav__link">
+    x0
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1702,14 +1738,90 @@
 <a id="xopt.generators.scipy.neldermead.NelderMeadGenerator"></a>
   <div class="doc doc-contents first">
           <p class="doc doc-class-bases">
-            Bases: <code><span title="xopt.generators.scipy.neldermead.ScipyOptimizeGenerator">ScipyOptimizeGenerator</span></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="xopt.generator.Generator" href="../#xopt.generator.Generator">Generator</a></code></p>
 
   
-      <p>Nelder-Mead algorithm from SciPy in Xopt's Generator form.</p>
+      <p>Nelder-Mead algorithm from SciPy in Xopt's Generator form.
+Converted to use a state machine to resume in exactly the last state.</p>
 
             <details class="quote">
               <summary>Source code in <code>xopt/generators/scipy/neldermead.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">139</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
 <span class="normal">142</span>
@@ -1744,41 +1856,198 @@
 <span class="normal">171</span>
 <span class="normal">172</span>
 <span class="normal">173</span>
-<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">NelderMeadGenerator</span><span class="p">(</span><span class="n">ScipyOptimizeGenerator</span><span class="p">):</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">NelderMeadGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Nelder-Mead algorithm from SciPy in Xopt&#39;s Generator form.</span>
+<span class="sd">    Converted to use a state machine to resume in exactly the last state.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;neldermead&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_init_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        sets self._algorithm to the generator function (initializing it).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="n">initial_point</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># replaces x0 argument</span>
+    <span class="n">initial_simplex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+        <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># This overrides the use of initial_point</span>
+    <span class="c1"># Same as scipy.optimize._optimize._minimize_neldermead</span>
+    <span class="n">adaptive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Change hyperparameters based on dimensionality&quot;</span>
+    <span class="p">)</span>
+    <span class="n">xatol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tolerance in x value&quot;</span><span class="p">)</span>
+    <span class="n">fatol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tolerance in function value&quot;</span><span class="p">)</span>
+    <span class="n">current_state</span><span class="p">:</span> <span class="n">SimplexState</span> <span class="o">=</span> <span class="n">SimplexState</span><span class="p">()</span>
+    <span class="n">future_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SimplexState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Internal data structures</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">is_done_bool</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">_initial_simplex</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_saved_options</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Initialize the first candidate if not given</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initial_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">random_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_saved_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span>
+            <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;current_state&quot;</span><span class="p">,</span> <span class="s2">&quot;future_state&quot;</span><span class="p">}</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Used to keep track of changed options</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_simplex</span><span class="p">:</span>
-            <span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initial_simplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
                 <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_simplex</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">]</span>
             <span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">sim</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initial_simplex</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span> <span class="o">=</span> <span class="n">_neldermead_generator</span><span class="p">(</span>  <span class="c1"># adapted from scipy.optimize</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span>  <span class="c1"># Handled by base class</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span>  <span class="c1"># Handled by base class</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Raw internal initial point for convenience&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_point</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_done_bool</span>
+
+    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># empty data, i.e. no steps yet</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">future_state</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">new_data</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Complicated part - need to determine if data corresponds to result of last gen</span>
+        <span class="n">ndata</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">ngen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="o">.</span><span class="n">ngen</span>
+        <span class="k">if</span> <span class="n">ndata</span> <span class="o">==</span> <span class="n">ngen</span><span class="p">:</span>
+            <span class="c1"># just resuming</span>
+            <span class="c1"># print(f&#39;Resuming with {ngen=}&#39;)</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Must have made at least 1 step, require future_state</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">future_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+            <span class="c1"># new data -&gt; advance state machine 1 step</span>
+            <span class="k">assert</span> <span class="n">ndata</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">future_state</span><span class="o">.</span><span class="n">ngen</span> <span class="o">==</span> <span class="n">ngen</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">future_state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">future_state</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># Can have multiple points if resuming from file, grab last one</span>
+            <span class="n">new_data_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">objective_data</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">new_data_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Bad last point </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">&quot;</span>
+
+            <span class="n">yt</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">yt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">yt</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_done_bool</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">return</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">yt</span>
+            <span class="c1"># print(f&#39;Added data {self.y=}&#39;)</span>
+
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_done</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">n_candidates</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;simplex can only produce one candidate at a time&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="o">.</span><span class="n">N</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># fresh start</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_inputs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="o">.</span><span class="n">ngen</span> <span class="o">==</span> <span class="n">n_inputs</span><span class="p">:</span>
+                <span class="c1"># We are in a state where result of last point is known</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_algorithm</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">results</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_done_bool</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">x</span><span class="p">,</span> <span class="n">state_extra</span> <span class="o">=</span> <span class="n">results</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">state_extra</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">STATE_KEYS</span><span class="p">)</span>
+        <span class="n">stateobj</span> <span class="o">=</span> <span class="n">SimplexState</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">STATE_KEYS</span><span class="p">,</span> <span class="n">state_extra</span><span class="p">)})</span>
+        <span class="c1"># print(&quot;State:&quot;, stateobj)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">future_state</span> <span class="o">=</span> <span class="n">stateobj</span>
+
+        <span class="n">inputs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">constants</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">inputs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">constants</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">inputs</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_call_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">_neldermead_generator</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">,</span>
+            <span class="n">lastval</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
             <span class="n">adaptive</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">adaptive</span><span class="p">,</span>
             <span class="n">xatol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xatol</span><span class="p">,</span>
             <span class="n">fatol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fatol</span><span class="p">,</span>
-            <span class="n">initial_simplex</span><span class="o">=</span><span class="n">sim</span><span class="p">,</span>
+            <span class="n">initial_simplex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_initial_simplex</span><span class="p">,</span>
             <span class="n">bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
         <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">results</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">simplex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the simplex in the current state.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span>
+        <span class="n">sim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="o">.</span><span class="n">sim</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">variable_names</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1811,6 +2080,28 @@
   <div class="doc doc-contents ">
   
       <p>Returns the simplex in the current state.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h2 id="xopt.generators.scipy.neldermead.NelderMeadGenerator.x0" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">x0</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Raw internal initial point for convenience</p>
   </div>
 
 </div>
@@ -1879,7 +2170,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.81fa17fe.min.js"></script>
       
     
   </body>
