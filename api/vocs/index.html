@@ -1719,6 +1719,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.cumulative_optimum" class="md-nav__link">
+    <span class="md-ellipsis">
+      cumulative_optimum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="cumulative_optimum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.cumulative_optimum--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.cumulative_optimum--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#xopt.vocs.VOCS.denormalize_inputs" class="md-nav__link">
     <span class="md-ellipsis">
       denormalize_inputs
@@ -2233,6 +2266,39 @@
       convert_numpy_to_inputs
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.cumulative_optimum" class="md-nav__link">
+    <span class="md-ellipsis">
+      cumulative_optimum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="cumulative_optimum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.cumulative_optimum--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xopt.vocs.VOCS.cumulative_optimum--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2889,7 +2955,38 @@ to describe optimization problems.</p>
 <span class="normal">494</span>
 <span class="normal">495</span>
 <span class="normal">496</span>
-<span class="normal">497</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VOCS</span><span class="p">(</span><span class="n">XoptBaseModel</span><span class="p">):</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VOCS</span><span class="p">(</span><span class="n">XoptBaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Variables, Objectives, Constraints, and other Settings (VOCS) data structure</span>
 <span class="sd">    to describe optimization problems.</span>
@@ -3349,6 +3446,37 @@ to describe optimization problems.</p>
         <span class="p">)[</span><span class="n">obj_name</span><span class="p">][:</span><span class="n">n</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">res</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">cumulative_optimum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the cumulative optimum for the given DataFrame.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data: pd.DataFrame</span>
+<span class="sd">            Data for which the cumulative optimum shall be calculated.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            Cumulative optimum for the given DataFrame.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">objectives</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No objectives defined.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">obj_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">obj_name</span><span class="p">]</span>
+        <span class="n">get_opt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span> <span class="k">if</span> <span class="n">obj</span> <span class="o">==</span> <span class="s2">&quot;MAXIMIZE&quot;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span>
+        <span class="n">feasible</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feasibility_data</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;feasible&quot;</span><span class="p">]</span>
+        <span class="n">feasible_obj_values</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">obj_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">feasible</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="p">]</span>
+        <span class="n">cumulative_optimum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">get_opt</span><span class="p">(</span><span class="n">feasible_obj_values</span><span class="p">[:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;best_</span><span class="si">{</span><span class="n">obj_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">cumulative_optimum</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -3901,6 +4029,94 @@ Assumes that the columns of the array match correspond to
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_dataframe_to_inputs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">include_constants</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xopt.vocs.VOCS.cumulative_optimum" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">cumulative_optimum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the cumulative optimum for the given DataFrame.</p>
+<h4 id="xopt.vocs.VOCS.cumulative_optimum--parameters">Parameters</h4>
+<p>data: pd.DataFrame
+    Data for which the cumulative optimum shall be calculated.</p>
+<h4 id="xopt.vocs.VOCS.cumulative_optimum--returns">Returns</h4>
+<p>pd.DataFrame
+    Cumulative optimum for the given DataFrame.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>xopt/vocs.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cumulative_optimum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the cumulative optimum for the given DataFrame.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        Data for which the cumulative optimum shall be calculated.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Cumulative optimum for the given DataFrame.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">objectives</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No objectives defined.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">obj_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objectives</span><span class="p">[</span><span class="n">obj_name</span><span class="p">]</span>
+    <span class="n">get_opt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span> <span class="k">if</span> <span class="n">obj</span> <span class="o">==</span> <span class="s2">&quot;MAXIMIZE&quot;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span>
+    <span class="n">feasible</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feasibility_data</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;feasible&quot;</span><span class="p">]</span>
+    <span class="n">feasible_obj_values</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">obj_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">feasible</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">]</span>
+    <span class="n">cumulative_optimum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">get_opt</span><span class="p">(</span><span class="n">feasible_obj_values</span><span class="p">[:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;best_</span><span class="si">{</span><span class="n">obj_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">cumulative_optimum</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
