@@ -3650,9 +3650,9 @@ observation, requires n_candidates to be 1.</p>
         <span class="n">lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocs</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 
         <span class="c1"># get maximum travel distances</span>
-        <span class="n">max_travel_distances</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span> <span class="o">*</span> <span class="n">lengths</span>
-        <span class="p">)</span>
+        <span class="n">max_travel_distances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_travel_distances</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">lengths</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_tkwargs</span><span class="p">)</span>
         <span class="n">max_travel_bounds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
             <span class="p">(</span><span class="n">last_point</span> <span class="o">-</span> <span class="n">max_travel_distances</span><span class="p">,</span> <span class="n">last_point</span> <span class="o">+</span> <span class="n">max_travel_distances</span><span class="p">)</span>
         <span class="p">)</span>
