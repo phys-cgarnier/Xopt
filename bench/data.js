@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714693138888,
+  "lastUpdate": 1714752983826,
   "repoUrl": "https://github.com/ChristopherMayes/Xopt",
   "entries": {
     "Benchmark": [
@@ -384,6 +384,198 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 2.9353449213099814",
             "extra": "mean: 10.58822854849988 sec\nrounds: 6"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rroussel@slac.stanford.edu",
+            "name": "Ryan Roussel",
+            "username": "roussel-ryan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ef849c9e6b328d6f947d4c3ec65675786115a694",
+          "message": "Merge pull request #224 from ChristopherMayes/set-weights-bugfix\n\nSet weights bugfix that creates improper behavior for bayesian exploration",
+          "timestamp": "2024-05-03T11:38:15-04:00",
+          "tree_id": "03cd08d1d601473f0503feba7b1a6a69a6ac91a2",
+          "url": "https://github.com/ChristopherMayes/Xopt/commit/ef849c9e6b328d6f947d4c3ec65675786115a694"
+        },
+        "date": 1714752903500,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[0]",
+            "value": 0.3308008334485539,
+            "unit": "iter/sec",
+            "range": "stddev: 0.5907160595616713",
+            "extra": "mean: 3.0229669906666663 sec\nrounds: 21"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[1]",
+            "value": 0.3436279843446775,
+            "unit": "iter/sec",
+            "range": "stddev: 0.3611558457990014",
+            "extra": "mean: 2.9101238710434765 sec\nrounds: 23"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[2]",
+            "value": 0.31938097287217887,
+            "unit": "iter/sec",
+            "range": "stddev: 0.6627693220132905",
+            "extra": "mean: 3.131056903631561 sec\nrounds: 19"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[3]",
+            "value": 0.2922541946198358,
+            "unit": "iter/sec",
+            "range": "stddev: 0.6411047141389503",
+            "extra": "mean: 3.4216788617894767 sec\nrounds: 19"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[4]",
+            "value": 0.2529479868266189,
+            "unit": "iter/sec",
+            "range": "stddev: 0.5446581434716511",
+            "extra": "mean: 3.9533819286153946 sec\nrounds: 13"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[5]",
+            "value": 0.17244438550235444,
+            "unit": "iter/sec",
+            "range": "stddev: 0.9705990793046787",
+            "extra": "mean: 5.798971054272721 sec\nrounds: 11"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[6]",
+            "value": 0.13956190847006184,
+            "unit": "iter/sec",
+            "range": "stddev: 2.180441759198009",
+            "extra": "mean: 7.165278914299995 sec\nrounds: 10"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[7]",
+            "value": 0.1311410226565783,
+            "unit": "iter/sec",
+            "range": "stddev: 2.202805048379017",
+            "extra": "mean: 7.625378998444451 sec\nrounds: 9"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[8]",
+            "value": 0.12213350374999286,
+            "unit": "iter/sec",
+            "range": "stddev: 1.7842248927426074",
+            "extra": "mean: 8.187761501111103 sec\nrounds: 9"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[9]",
+            "value": 0.1177493658310294,
+            "unit": "iter/sec",
+            "range": "stddev: 2.0453018121550577",
+            "extra": "mean: 8.492614740999983 sec\nrounds: 8"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[10]",
+            "value": 0.11555078404290658,
+            "unit": "iter/sec",
+            "range": "stddev: 1.9155422401886248",
+            "extra": "mean: 8.654203502666652 sec\nrounds: 12"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[11]",
+            "value": 0.06987328224371675,
+            "unit": "iter/sec",
+            "range": "stddev: 5.934490040765302",
+            "extra": "mean: 14.311621951749999 sec\nrounds: 4"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[12]",
+            "value": 0.33611806163944974,
+            "unit": "iter/sec",
+            "range": "stddev: 0.6142564165059138",
+            "extra": "mean: 2.9751450877777863 sec\nrounds: 27"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[13]",
+            "value": 0.39667332696683066,
+            "unit": "iter/sec",
+            "range": "stddev: 0.4735611067525645",
+            "extra": "mean: 2.520966074645142 sec\nrounds: 31"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[14]",
+            "value": 0.37302972070817947,
+            "unit": "iter/sec",
+            "range": "stddev: 0.6471336744325481",
+            "extra": "mean: 2.680751544679997 sec\nrounds: 25"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[15]",
+            "value": 0.2945443063600858,
+            "unit": "iter/sec",
+            "range": "stddev: 0.7136943589438995",
+            "extra": "mean: 3.395074962941167 sec\nrounds: 17"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[16]",
+            "value": 0.317585116711404,
+            "unit": "iter/sec",
+            "range": "stddev: 0.5821491236547972",
+            "extra": "mean: 3.148762166045458 sec\nrounds: 22"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[17]",
+            "value": 0.19875493359246585,
+            "unit": "iter/sec",
+            "range": "stddev: 1.1709749300186045",
+            "extra": "mean: 5.0313216478461635 sec\nrounds: 13"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[18]",
+            "value": 0.24832141638533714,
+            "unit": "iter/sec",
+            "range": "stddev: 3.646458407945337",
+            "extra": "mean: 4.027038885958319 sec\nrounds: 24"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[19]",
+            "value": 0.13765719235731222,
+            "unit": "iter/sec",
+            "range": "stddev: 2.648587035665905",
+            "extra": "mean: 7.264422460428607 sec\nrounds: 7"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[20]",
+            "value": 0.16601197189609576,
+            "unit": "iter/sec",
+            "range": "stddev: 1.8871538581759026",
+            "extra": "mean: 6.0236619599090355 sec\nrounds: 11"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[21]",
+            "value": 0.06088535937093039,
+            "unit": "iter/sec",
+            "range": "stddev: 3.798393916894425",
+            "extra": "mean: 16.424309724571458 sec\nrounds: 7"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[22]",
+            "value": 0.07014494545752192,
+            "unit": "iter/sec",
+            "range": "stddev: 6.040228029524846",
+            "extra": "mean: 14.256194704799872 sec\nrounds: 5"
+          },
+          {
+            "name": "benchmarks/test_mo.py::test_mobo[23]",
+            "value": 0.06893438104988062,
+            "unit": "iter/sec",
+            "range": "stddev: 2.055082503400522",
+            "extra": "mean: 14.506549341124924 sec\nrounds: 8"
           }
         ]
       }
