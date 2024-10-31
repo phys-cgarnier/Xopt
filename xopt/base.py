@@ -332,6 +332,10 @@ class Xopt(XoptBaseModel):
         # explode any list like results if all the output names exist
         output_data = explode_all_columns(output_data)
 
+        # add correct indexes
+        if self.data is not None:
+            output_data.index = np.arange(len(self.data), len(self.data) + len(output_data))
+
         self.add_data(output_data)
 
         # dump data to file if specified
@@ -356,8 +360,6 @@ class Xopt(XoptBaseModel):
         # Set internal dataframe.
         if self.data is not None:
             new_data = pd.DataFrame(new_data, copy=True)  # copy for reindexing
-            new_data.index = np.arange(len(self.data), len(self.data) + len(new_data))
-
             self.data = pd.concat([self.data, new_data], axis=0)
         else:
             if new_data.index.dtype != np.int64:
