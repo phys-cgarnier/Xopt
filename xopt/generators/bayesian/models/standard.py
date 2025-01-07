@@ -8,6 +8,7 @@ import pandas as pd
 import torch
 from botorch.models import ModelListGP
 from botorch.models.transforms import Normalize, Standardize
+from botorch.models.transforms.input import InputTransform
 from gpytorch.constraints import GreaterThan
 from gpytorch.kernels import Kernel
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood
@@ -73,7 +74,7 @@ class StandardModelConstructor(ModelConstructor):
     trainable_mean_keys: List[str] = Field(
         [], description="list of prior mean modules that can be trained"
     )
-    transform_inputs: Union[Dict[str, bool], bool] = Field(
+    transform_inputs: Union[Dict[str, Union[None, InputTransform]], bool] = Field(
         True,
         description="specify if inputs should be transformed inside the gp "
         "model, can optionally specify a dict of specifications",
@@ -322,7 +323,17 @@ class StandardModelConstructor(ModelConstructor):
             return None
 
     def _get_input_transform(self, outcome_name, input_names, input_bounds, tkwargs):
-        """get input transform based on the supplied bounds and attributes"""
+        """
+        get input transform based on the supplied bounds and attributes
+
+        - If the `self.transform_inputs` is a bool we either apply the normalize
+        transform to all or none of the output models.
+        - If the `self.transform_inputs` attribute is a dict then we apply the
+        transforms for each outcome name in the dict. If the outcome name is not in
+        the dict it defaults to a normalize transform. If the dict entry is None no
+        transform is applied.
+
+        """
         # get input bounds
         if input_bounds is None:
             bounds = None
@@ -332,18 +343,22 @@ class StandardModelConstructor(ModelConstructor):
             ).T
 
         # create transform
-        input_transform = Normalize(len(input_names), bounds=bounds)
-
-        # remove input transform if the bool is False or the dict entry is false
         if isinstance(self.transform_inputs, bool):
-            if not self.transform_inputs:
+            if self.transform_inputs:
+                input_transform = Normalize(len(input_names), bounds=bounds)
+            else:
                 input_transform = None
-        if (
-            isinstance(self.transform_inputs, dict)
-            and outcome_name in self.transform_inputs
-        ):
-            if not self.transform_inputs[outcome_name]:
-                input_transform = None
+        elif isinstance(self.transform_inputs, dict):
+            if outcome_name in self.transform_inputs:
+                if self.transform_inputs[outcome_name] is not None:
+                    input_transform = self.transform_inputs[outcome_name]
+                else:
+                    input_transform = None
+            else:
+                input_transform = Normalize(len(input_names), bounds=bounds)
+        else:
+            raise ValueError(f"{type(self.transform_inputs)} is not a supported type "
+                             f"specification for handling input transforms.")
 
         # remove warnings if input transform is None
         if input_transform is None:
