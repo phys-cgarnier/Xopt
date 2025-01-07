@@ -115,7 +115,6 @@ class MatrixTransform(ReversibleInputTransform, torch.nn.Module):
                 f" , but has {X.ndim}."
             )
 
-        torch.broadcast_shapes(self.transformation_matrix.shape, X.shape)
 
     def _to(self, X: Tensor) -> None:
         r"""Makes coefficient and offset have same device and dtype as X."""

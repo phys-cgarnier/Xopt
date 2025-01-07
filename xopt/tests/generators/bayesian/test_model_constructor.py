@@ -25,6 +25,7 @@ from xopt.generators.bayesian.models.standard import StandardModelConstructor
 from xopt.generators.bayesian.utils import get_training_data
 from xopt.resources.testing import TEST_VOCS_BASE, TEST_VOCS_DATA
 from xopt.vocs import VOCS
+from xopt.generators.bayesian.custom_botorch.matrix_transform import MatrixTransform
 
 
 class TestModelConstructor:
@@ -520,6 +521,16 @@ class TestModelConstructor:
 
         assert model.models[1].likelihood.noise_covar.noise_prior.rate == 1000.0
         assert model.models[1].likelihood.noise_covar.noise_prior.concentration == 1.0
+
+    def test_matrix_transformation(self):
+        matrix = torch.eye(2) * 2
+
+        transform = MatrixTransform(d=2, transformation_matrix=matrix)
+        test_data = torch.rand(10, 5, 2)
+        assert torch.equal(
+            transform.untransform(transform.transform(test_data)),
+            test_data
+        )
 
     def test_model_caching(self):
         test_data = deepcopy(TEST_VOCS_DATA)
