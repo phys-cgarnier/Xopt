@@ -1,3 +1,4 @@
+from types import NoneType
 from typing import Dict, List, Optional, Tuple
 import numpy as np
 
@@ -33,6 +34,9 @@ class SequentialGenerator(Generator, StateOwner):
         ValueError
             If the generator is active but no candidate was generated, or if the new data does not contain the last candidate.
         """
+        if new_data is None:
+            self.data = None
+            return
 
         if not isinstance(new_data, pd.DataFrame):
             raise TypeError(
@@ -107,6 +111,10 @@ class SequentialGenerator(Generator, StateOwner):
         data : pd.DataFrame
             The data to set.
         """
+
+        if data is None:
+            self.data = None
+            return
 
         if not isinstance(data, pd.DataFrame):
             raise TypeError(f"data must be a pandas DataFrame, not {type(data)}")

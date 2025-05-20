@@ -1,5 +1,6 @@
 import logging
 from abc import ABC, abstractmethod
+from types import NoneType
 from typing import Any, ClassVar, Optional
 
 import pandas as pd
@@ -118,6 +119,10 @@ class Generator(XoptBaseModel, ABC):
         This is intended for generators that maintain their own data.
 
         """
+        if new_data is None:
+            self.data = None
+            return
+
         if not isinstance(new_data, pd.DataFrame):
             raise TypeError(
                 f"new_data must be a pandas DataFrame, not {type(new_data)}"

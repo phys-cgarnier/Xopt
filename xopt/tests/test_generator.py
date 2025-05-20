@@ -61,7 +61,7 @@ class TestGenerator:
 
         # make sure that the inidices are correct
         assert gen.data.index.tolist() == list(range(101))
-        
+
     def test_data_index_is_int(self):
         test_vocs = deepcopy(TEST_VOCS_BASE)
         gen = PatchGenerator(vocs=test_vocs)
@@ -82,7 +82,6 @@ class TestGenerator:
         gen.add_data(df3)
         assert gen.data.index.dtype == int
         assert gen.data.index.tolist() == list(range(4))
-        
 
     @pytest.mark.parametrize("name", list_available_generators())
     def test_serialization_loading(self, name):
