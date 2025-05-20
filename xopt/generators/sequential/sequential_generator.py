@@ -33,6 +33,15 @@ class SequentialGenerator(Generator, StateOwner):
         ValueError
             If the generator is active but no candidate was generated, or if the new data does not contain the last candidate.
         """
+
+        if not isinstance(new_data, pd.DataFrame):
+            raise TypeError(
+                f"new_data must be a pandas DataFrame, not {type(new_data)}"
+            )
+
+        # cast pandas indicies to int
+        new_data.index = new_data.index.astype(int)
+
         # if the generator is active then the new data must contain the last candidate
         if self.is_active:
             if self._last_candidate is None:
@@ -98,6 +107,12 @@ class SequentialGenerator(Generator, StateOwner):
         data : pd.DataFrame
             The data to set.
         """
+
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError(f"data must be a pandas DataFrame, not {type(data)}")
+        # cast pandas indicies to int
+        data.index = data.index.astype(int)
+
         # TODO: make a flag for generator that support multiple data sets
         if self._data_set:
             raise ValueError("Data has already been initialized for this generator.")

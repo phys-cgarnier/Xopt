@@ -118,8 +118,15 @@ class Generator(XoptBaseModel, ABC):
         This is intended for generators that maintain their own data.
 
         """
+        if not isinstance(new_data, pd.DataFrame):
+            raise TypeError(
+                f"new_data must be a pandas DataFrame, not {type(new_data)}"
+            )
+        # cast pandas indicies to int
+        new_data.index = new_data.index.astype(int)
+
         if self.data is not None:
-            self.data = pd.concat([self.data, new_data], axis=0)
+            self.data = pd.concat([self.data, new_data], axis=0, ignore_index=True)
         else:
             self.data = new_data
 

@@ -50,6 +50,14 @@ def test_add_data(sample_vocs, sample_data):
         gen.add_data(sample_data)
 
 
+def test_data_index_is_int(sample_vocs, sample_data):
+    gen = TestSequentialGenerator(vocs=sample_vocs)
+    gen.add_data(sample_data)
+    # Ensure index is RangeIndex (default integer index)
+    assert isinstance(gen.data.index, pd.RangeIndex)
+    assert all(isinstance(idx, int) for idx in gen.data.index)
+
+
 def test_generate(sample_vocs):
     gen = TestSequentialGenerator(vocs=sample_vocs)
     candidate = gen.generate()

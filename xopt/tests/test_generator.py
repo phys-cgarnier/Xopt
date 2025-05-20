@@ -2,6 +2,8 @@ import json
 from copy import deepcopy
 
 import pytest
+import pandas as pd
+import numpy as np
 
 from xopt.errors import VOCSError
 from xopt.generator import Generator
@@ -36,6 +38,51 @@ class TestGenerator:
 
         with pytest.raises(VOCSError):
             PatchGenerator(vocs=test_vocs)
+
+    def test_add_data(self):
+        test_vocs = deepcopy(TEST_VOCS_BASE)
+        gen = PatchGenerator(vocs=test_vocs)
+
+        gen.add_data(pd.DataFrame({"x1": 1, "x2": 2, "y1": 3}, index=[0]))
+
+        assert gen.data.shape == (1, 3)
+
+        # add a large amount of data
+        data = pd.DataFrame(
+            {
+                "x1": np.random.rand(100),
+                "x2": np.random.rand(100),
+                "y1": np.random.rand(100),
+            }
+        )
+
+        gen.add_data(data)
+        assert gen.data.shape == (101, 3)
+
+        # make sure that the inidices are correct
+        assert gen.data.index.tolist() == list(range(101))
+        
+    def test_data_index_is_int(self):
+        test_vocs = deepcopy(TEST_VOCS_BASE)
+        gen = PatchGenerator(vocs=test_vocs)
+
+        # Add data with string index
+        df = pd.DataFrame({"x1": [1], "x2": [2], "y1": [3]}, index=["0"])
+        gen.add_data(df)
+        assert gen.data.index.dtype == int
+
+        # Add more data with mixed index types
+        df2 = pd.DataFrame({"x1": [4, 5], "x2": [6, 7], "y1": [8, 9]}, index=["1", 2])
+        gen.add_data(df2)
+        assert gen.data.index.dtype == int
+        assert gen.data.index.tolist() == list(range(3))
+
+        # Add data with integer index
+        df3 = pd.DataFrame({"x1": [10], "x2": [11], "y1": [12]}, index=[3])
+        gen.add_data(df3)
+        assert gen.data.index.dtype == int
+        assert gen.data.index.tolist() == list(range(4))
+        
 
     @pytest.mark.parametrize("name", list_available_generators())
     def test_serialization_loading(self, name):
